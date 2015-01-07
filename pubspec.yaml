@@ -1,0 +1,8 @@
+name: graphlib
+version: 0.0.1
+description: A library useful for applications or for sharing on pub.dartlang.org.
+dependencies:
+  browser: any
+  charted: any
+dev_dependencies:
+  unittest: ">=0.11.4 <0.12.0"
