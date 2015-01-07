@@ -27,7 +27,7 @@ import "../util.dart" as util;
 ///    ordered such that they do not violate constraints from the constraint
 ///    graph. The property `i` is the lowest original index of any of the
 ///    elements in `vs`.
-resolveConflicts(Iterable<Map> entries, Graph cg) {
+List<Map> resolveConflicts(Iterable<Map> entries, Graph cg) {
   var mappedEntries = {};
   int i = 0;
   entries.forEach((entry) {
@@ -56,17 +56,17 @@ resolveConflicts(Iterable<Map> entries, Graph cg) {
 
   var sourceSet = mappedEntries.values.where((entry) {
     return entry["indegree"] == null || entry["indegree"] == 0;
-  });
+  }).toList();
 
   return doResolveConflicts(sourceSet);
 }
 
-doResolveConflicts(List<Map> sourceSet) {
+List<Map> doResolveConflicts(List<Map> sourceSet) {
   var entries = [];
 
   handleIn(Map vEntry) {
     return (Map uEntry) {
-      if (uEntry["merged"]) {
+      if (uEntry.containsKey("merged") && uEntry["merged"]) {
         return;
       }
       if (uEntry["barycenter"] == null ||
@@ -89,30 +89,30 @@ doResolveConflicts(List<Map> sourceSet) {
   while (sourceSet.length != 0) {
     Map entry = sourceSet.removeLast();
     entries.add(entry);
-    entry["in"].reverse().forEach(handleIn(entry));
+    entry["in"].reversed.forEach(handleIn(entry));
     entry["out"].forEach(handleOut(entry));
   }
 
-  return entries.where((entry) => entry["merged"] == false).map((entry) {
+  return entries.where((entry) => !entry.containsKey("merged") || entry["merged"] == false).map((Map entry) {
     return util.pick(entry, ["vs", "i", "barycenter", "weight"]);
-  });
+  }).toList();
 }
 
 mergeEntries(Map target, Map source) {
   var sum = 0,
       weight = 0;
 
-  if (target["weight"]) {
+  if (target.containsKey("weight")) {
     sum += target["barycenter"] * target["weight"];
     weight += target["weight"];
   }
 
-  if (source["weight"]) {
+  if (source.containsKey("weight")) {
     sum += source["barycenter"] * source["weight"];
     weight += source["weight"];
   }
 
-  target["vs"] = source["vs"].concat(target["vs"]);
+  target["vs"] = source["vs"].toList()..addAll(target["vs"]);
   target["barycenter"] = sum / weight;
   target["weight"] = weight;
   target["i"] = Math.min(source["i"], target["i"]);

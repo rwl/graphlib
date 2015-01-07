@@ -41,13 +41,15 @@ buildLayerGraph(Graph g, rank, relationship) {
     var node = g.node(v),
         parent = g.parent(v);
 
-    if (node["rank"] == rank || node["minRank"] <= rank && rank <= node["maxRank"]) {
+    var minRank = node.containsKey("minRank") ? node["minRank"] : 0.0;
+    var maxRank = node.containsKey("maxRank") ? node["maxRank"] : 0.0;
+    if (node["rank"] == rank || minRank <= rank && rank <= maxRank) {
       result.setNode(v);
-      result.setParent(v, parent || root);
+      result.setParent(v, parent != null ? parent : root);
 
       // This assumes we have only short edges!
       var edges = relationship == "inEdges" ? g.inEdges(v) : g.outEdges(v);
-      edges(v).forEach((Edge e) {
+      edges.forEach((Edge e) {
         var u = e.v == v ? e.w : e.v,
             edge = result.edge(u, v),
             weight = edge != null ? edge["weight"] : 0;

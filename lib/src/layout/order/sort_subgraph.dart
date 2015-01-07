@@ -35,7 +35,7 @@ Map sortSubgraph(Graph g, v, Graph cg, [bool biasRight=false]) {
 
   var result = sort(entries, biasRight);
 
-  if (bl) {
+  if (bl != null) {
     result["vs"] = util.flatten([bl, result["vs"], br]);
     if (g.predecessors(bl).length != 0) {
       Map blPred = g.node(g.predecessors(bl).first),
@@ -56,7 +56,7 @@ Map sortSubgraph(Graph g, v, Graph cg, [bool biasRight=false]) {
 expandSubgraphs(Iterable<Map> entries, subgraphs) {
   entries.forEach((entry) {
     entry["vs"] = util.flatten(entry["vs"].map((v) {
-      if (subgraphs[v]) {
+      if (subgraphs[v] != null) {
         return subgraphs[v]["vs"];
       }
       return v;

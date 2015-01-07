@@ -20,7 +20,11 @@ List flatten(Iterable a) => a.expand((i) => i).toList();
 
 Map pick(Map a, List keys) {
   var b = {};
-  keys.forEach((key) => b[key] = a[key]);
+  keys.forEach((key) {
+    if (a.containsKey(key)) {
+      b[key] = a[key];
+    }
+  });
   return b;
 }
 

@@ -132,7 +132,7 @@ Map intersectRect(Map rect, Map point) {
 /// Given a DAG with each node assigned "rank" and "order" properties, this
 /// function will produce a matrix with the ids of each node.
 List buildLayerMatrix(Graph g) {
-  var layering = range(maxRank(g) + 1).map((_) => []).toList();
+  var layering = range(maxRank(g) + 1).map((_) => new SplayTreeMap()).toList();
   g.nodes.forEach((v) {
     Map node = g.node(v);
     var rank = node["rank"];
@@ -140,7 +140,7 @@ List buildLayerMatrix(Graph g) {
       layering[rank][node["order"]] = v;
     }
   });
-  return layering;
+  return layering.map((SplayTreeMap m) => m.values.toList()).toList();
 }
 
 /// Adjusts the ranks for all nodes in the graph such that all nodes v have

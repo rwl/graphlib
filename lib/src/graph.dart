@@ -24,7 +24,7 @@ class Graph {
   final bool _isDirected, _isMultigraph, _isCompound;
 
   // Label for the graph itself
-  String _label;
+  var _label;
 
   // Defaults to be set when creating a new node
   nodeLabelFn _defaultNodeLabelFn = (v) => null;

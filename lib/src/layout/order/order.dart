@@ -33,7 +33,7 @@ order(Graph g) {
   List<List> best;
 
   for (var i = 0, lastBest = 0; lastBest < 4; ++i, ++lastBest) {
-    _sweepLayerGraphs(i % 2 ? downLayerGraphs : upLayerGraphs, i % 4 >= 2);
+    _sweepLayerGraphs(i % 2 != 0 ? downLayerGraphs : upLayerGraphs, i % 4 >= 2);
 
     layering = util.buildLayerMatrix(g);
     var cc = crossCount(g, layering);
@@ -59,8 +59,10 @@ _sweepLayerGraphs(Iterable layerGraphs, biasRight) {
   layerGraphs.forEach((lg) {
     var root = lg.graph()["root"];
     var sorted = sortSubgraph(lg, root, cg, biasRight);
-    sorted["vs"].forEach((v, i) {
+    int i = 0;
+    sorted["vs"].forEach((v) {
       lg.node(v)["order"] = i;
+      i++;
     });
     addSubgraphConstraints(lg, cg, sorted["vs"]);
   });

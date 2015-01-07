@@ -16,9 +16,12 @@ List<List> initOrder(Graph g) {
   var visited = {},
       simpleNodes = g.nodes.where((v) {
         return g.children(v).length == 0;
-      }),
-      maxRank = max(simpleNodes.map((v) => g.node(v)["rank"])),
-      layers = range(maxRank + 1).map((_) => []);
+      }).toList();
+  var maxRank = max(simpleNodes.map((v) {
+    var rank = g.node(v)["rank"];
+    return rank;
+  }));
+  var layers = range(maxRank + 1).map((_) => []).toList();
 
   dfs(v) {
     if (visited.containsKey(v)) return;
@@ -28,7 +31,9 @@ List<List> initOrder(Graph g) {
     g.successors(v).forEach(dfs);
   }
 
-  var orderedVs = simpleNodes.sort((v) => g.node(v)["rank"]);
+  var orderedVs = simpleNodes..sort((a, b) {
+    return g.node(a)["rank"].compareTo(g.node(b)["rank"]);
+  });
   orderedVs.forEach(dfs);
 
   return layers;

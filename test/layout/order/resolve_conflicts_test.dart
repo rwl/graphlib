@@ -75,13 +75,13 @@ resolveConflictsTest() {
       ];
       cg.setEdge("a", "c");
       cg.setEdge("b", "c");
-      var results = resolveConflicts(input, cg);
+      List<Map> results = resolveConflicts(input, cg);
       expect(results, hasLength(equals(1)));
-      expect(results[0].vs.indexOf("c"), greaterThan(results[0].vs.indexOf("a")));
-      expect(results[0].vs.indexOf("c"), greaterThan(results[0].vs.indexOf("b")));
-      expect(results[0].i, equals(0));
-      expect(results[0].barycenter, equals((4 + 3 + 2) / 3));
-      expect(results[0].weight, equals(3));
+      expect(results[0]["vs"].indexOf("c"), greaterThan(results[0]["vs"].indexOf("a")));
+      expect(results[0]["vs"].indexOf("c"), greaterThan(results[0]["vs"].indexOf("b")));
+      expect(results[0]["i"], equals(0));
+      expect(results[0]["barycenter"], equals((4 + 3 + 2) / 3));
+      expect(results[0]["weight"], equals(3));
     });
 
     test("works with multiple constraints for the same target #2", () {
@@ -95,14 +95,14 @@ resolveConflictsTest() {
       cg.setEdge("a", "d");
       cg.setEdge("b", "c");
       cg.setEdge("c", "d");
-      var results = resolveConflicts(input, cg);
+      List<Map> results = resolveConflicts(input, cg);
       expect(results, hasLength(equals(1)));
-      expect(results[0].vs.indexOf("c"), greaterThan(results[0].vs.indexOf("a")));
-      expect(results[0].vs.indexOf("c"), greaterThan(results[0].vs.indexOf("b")));
-      expect(results[0].vs.indexOf("d"), greaterThan(results[0].vs.indexOf("c")));
-      expect(results[0].i, equals(0));
-      expect(results[0].barycenter, equals((4 + 3 + 2 + 1) / 4));
-      expect(results[0].weight, equals(4));
+      expect(results[0]["vs"].indexOf("c"), greaterThan(results[0]["vs"].indexOf("a")));
+      expect(results[0]["vs"].indexOf("c"), greaterThan(results[0]["vs"].indexOf("b")));
+      expect(results[0]["vs"].indexOf("d"), greaterThan(results[0]["vs"].indexOf("c")));
+      expect(results[0]["i"], equals(0));
+      expect(results[0]["barycenter"], equals((4 + 3 + 2 + 1) / 4));
+      expect(results[0]["weight"], equals(4));
     });
 
     test("does nothing to a node lacking both a barycenter and a constraint", () {

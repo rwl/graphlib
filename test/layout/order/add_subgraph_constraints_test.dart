@@ -1,7 +1,7 @@
 library graphlib.test.layout.order.add_subgraph_constraints;
 
 import 'package:unittest/unittest.dart';
-import 'package:graphlib/graphlib.dart' show Graph;
+import 'package:graphlib/graphlib.dart' show Graph, Edge;
 import 'package:graphlib/src/layout/order/add_subgraph_constraints.dart' show addSubgraphConstraints;
 
 addSubgraphConstraintsTest() {
@@ -36,7 +36,7 @@ addSubgraphConstraintsTest() {
       g.setParent("a", "sg1");
       g.setParent("b", "sg2");
       addSubgraphConstraints(g, cg, vs);
-      expect(cg.edges, equals([{ "v": "sg1", "w": "sg2" }]));
+      expect(cg.edges, equals([new Edge("sg1", "sg2")]));
     });
 
     test("works for multiple levels", () {
@@ -54,8 +54,8 @@ addSubgraphConstraintsTest() {
       g.setParent("sg5", "sg4");
       addSubgraphConstraints(g, cg, vs);
       expect(cg.edges, unorderedEquals([
-        { "v": "sg1", "w": "sg4" },
-        { "v": "sg2", "w": "sg3" }
+        new Edge("sg1", "sg4"),
+        new Edge("sg2", "sg3")
       ]));
     });
   });

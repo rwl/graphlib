@@ -12,7 +12,8 @@ List<Map> barycenter(Graph g, Iterable movable) {
       inV.forEach((e) {
         Map edge = g.edgeObj(e),
             nodeU = g.node(e.v);
-        result["sum"] += (edge["weight"] * nodeU["order"]);
+        var order = nodeU.containsKey("order") ? nodeU["order"] : 1;
+        result["sum"] += (edge["weight"] * order);
         result["weight"] += edge["weight"];
       });
 

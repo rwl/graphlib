@@ -6,14 +6,16 @@ Map sort(entries, [bool biasRight=false]) {
   Map parts = util.partition(entries, (entry) {
     return entry.containsKey("barycenter");
   });
-  var sortable = parts["lhs"],
-      unsortable = parts["rhs"].sort((entry) => -entry["i"]),
-      vs = [],
+  var sortable = parts["lhs"];
+  var unsortable = parts["rhs"]..sort((entryA, entryB) {
+    return -entryA["i"].compareTo(-entryB["i"]);
+  });
+  var vs = [],
       sum = 0,
       weight = 0,
       vsIndex = 0;
 
-  sortable.sort(compareWithBias(!!biasRight));
+  sortable.sort(compareWithBias(biasRight));
 
   vsIndex = consumeUnsortable(vs, unsortable, vsIndex);
 
@@ -35,9 +37,9 @@ Map sort(entries, [bool biasRight=false]) {
 
 int consumeUnsortable(List vs, List unsortable, int index) {
   var last;
-  while (unsortable.length != 0 && (last = unsortable.last).i <= index) {
+  while (unsortable.length != 0 && (last = unsortable.last)["i"] <= index) {
     unsortable.removeLast();
-    vs.add(last.vs);
+    vs.add(last["vs"]);
     index++;
   }
   return index;

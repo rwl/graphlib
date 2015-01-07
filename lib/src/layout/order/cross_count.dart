@@ -33,7 +33,7 @@ int twoLayerCrossCount(Graph g, Iterable northLayer, Iterable southLayer) {
   var southEntries = flatten(northLayer.map((v) {
     return g.outEdges(v).map((e) {
       return { "pos": southPos[e.w], "weight": g.edgeObj(e)["weight"] };
-    }).toList().sort((Map a, Map b) {
+    }).toList()..sort((Map a, Map b) {
       return a["pos"].compareTo(b["pos"]);
     });
   }));
@@ -47,18 +47,18 @@ int twoLayerCrossCount(Graph g, Iterable northLayer, Iterable southLayer) {
 
   // Calculate the weighted crossings
   var cc = 0;
-  /*_.each(*/southEntries.forEach((entry) {
-    var index = entry.pos + firstIndex;
-    tree[index] += entry.weight;
+  /*_.each(*/southEntries.forEach((Map entry) {
+    var index = entry["pos"] + firstIndex;
+    tree[index] += entry["weight"];
     var weightSum = 0;
     while (index > 0) {
-      if (index % 2) {
+      if (index % 2 != 0) {
         weightSum += tree[index + 1];
       }
       index = (index - 1) >> 1;
-      tree[index] += entry.weight;
+      tree[index] += entry["weight"];
     }
-    cc += entry.weight * weightSum;
+    cc += entry["weight"] * weightSum;
   })/*)*/;
 
   return cc;

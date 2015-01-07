@@ -14,8 +14,8 @@ initOrderTest() {
     });
 
     test("assigns non-overlapping orders for each rank in a tree", () {
-      ({ "a": 0, "b": 1, "c": 2, "d": 2, "e": 1 }).forEach((rank, v) {
-        g.setNode(v, { rank: rank });
+      ({ "a": 0, "b": 1, "c": 2, "d": 2, "e": 1 }).forEach((v, rank) {
+        g.setNode(v, { "rank": rank });
       });
       g.setPath(["a", "b", "c"]);
       g.setEdge("b", "d");
@@ -28,8 +28,8 @@ initOrderTest() {
     });
 
     test("assigns non-overlapping orders for each rank in a DAG", () {
-      ({ "a": 0, "b": 1, "c": 1, "d": 2 }).forEach((rank, v) {
-        g.setNode(v, { rank: rank });
+      ({ "a": 0, "b": 1, "c": 1, "d": 2 }).forEach((v, rank) {
+        g.setNode(v, { "rank": rank });
       });
       g.setPath(["a", "b", "d"]);
       g.setPath(["a", "c", "d"]);
