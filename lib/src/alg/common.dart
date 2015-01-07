@@ -16,7 +16,7 @@ class AlgorithmException implements Exception {
 class Path<U> {
   num distance;
   U predecessor;
-  Path({distance: 0.0, predecessor});
+  Path({this.distance: 0.0, this.predecessor});
   bool operator ==(Path other) {
     if (other == null) {
       return false;

@@ -40,7 +40,7 @@ tarjanTest() {
 
 // A helper that sorts components and their contents
 sort(cmpts) {
-  return cmpts.map((cmpt) => cmpt.sort()).sort((cmptsA, cmptsB) {
+  return cmpts.map((cmpt) => cmpt..sort()).toList()..sort((cmptsA, cmptsB) {
     return cmptsA[0].compareTo(cmptsB[0]);
   });
 }

@@ -15,15 +15,15 @@ import "topsort_test.dart";
 testAlgs() {
   componentsTest();
   dijkstraAllTest();
-//  dijkstraTest();
-//  findCyclesTest();
-//  floydWarshallTest();
-//  isAcylicTest();
-//  postorderTest();
-//  preorderTest();
-//  primTest();
-//  tarjanTest();
-//  topsortTest();
+  dijkstraTest();
+  findCyclesTest();
+  floydWarshallTest();
+  isAcylicTest();
+  postorderTest();
+  preorderTest();
+  primTest();
+  tarjanTest();
+  topsortTest();
 }
 
 main() => testAlgs();

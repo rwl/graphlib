@@ -8,7 +8,7 @@ preorderTest() {
     test("returns the root for a singleton graph", () {
       var g = new Graph();
       g.setNode("a");
-      expect(preorder(g, "a"), equals(["a"]));
+      expect(preorder(g, ["a"]), equals(["a"]));
     });
 
     test("visits each node in the graph once", () {
@@ -16,7 +16,7 @@ preorderTest() {
       g.setPath(["a", "b", "d", "e"]);
       g.setPath(["a", "c", "d", "e"]);
 
-      var nodes = preorder(g, "a");
+      var nodes = preorder(g, ["a"]);
       expect(nodes, unorderedEquals(["a", "b", "c", "d", "e"]));
     });
 
@@ -26,7 +26,7 @@ preorderTest() {
       g.setPath(["a", "c", "d"]);
       g.setEdge("c", "e");
 
-      var nodes = preorder(g, "a");
+      var nodes = preorder(g, ["a"]);
       expect(nodes, unorderedEquals(["a", "b", "c", "d", "e"]));
       expect(nodes.indexOf("b"), greaterThan(nodes.indexOf("a")));
       expect(nodes.indexOf("c"), greaterThan(nodes.indexOf("a")));
@@ -50,7 +50,7 @@ preorderTest() {
     test("fails if root is not in the graph", () {
       var g = new Graph();
       g.setNode("a");
-      expect(() => preorder(g, "b"), throws);
+      expect(() => preorder(g, ["b"]), throws);
     });
   });
 }

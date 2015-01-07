@@ -33,10 +33,10 @@ _doDfs(Graph g, v, bool postorder, Map visited, List acc) {
   }
 }
 
-List preorder(g, vs) {
+List preorder(Graph g, List vs) {
   return dfs(g, vs, "pre");
 }
 
-List postorder(g, vs) {
+List postorder(Graph g, List vs) {
   return dfs(g, vs, "post");
 }
