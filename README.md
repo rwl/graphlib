@@ -1,18 +1,10 @@
-# graphlib
+# Graphlib
 
-A library for Dart developers.
+Graphlib is a Dart library that provides data structures for undirected
+and directed multi-graphs along with algorithms that can be used with them.
 
-## Usage
+# License
 
-A simple usage example:
-
-    import 'package:graphlib/graphlib.dart';
-
-    main() {
-    }
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+Graphlib is licensed under the terms of the MIT License. See the
+[LICENSE](LICENSE) file
+aor details.

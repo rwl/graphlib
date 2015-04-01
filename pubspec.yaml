@@ -1,8 +1,10 @@
 name: graphlib
-version: 0.0.1
-description: A library useful for applications or for sharing on pub.dartlang.org.
+version: 0.0.3
+author: Richard Lincoln <r.w.lincoln@gmail.com>
+description: A directed and undirected multi-graph library.
+homepage: https://github.com/rwl/graphlib
 dependencies:
-  browser: any
-  charted: any
+  browser: '>=0.10.0+2 <0.11.0'
+  charted: '>=0.0.9 <0.1.0'
 dev_dependencies:
-  unittest: ">=0.11.4 <0.12.0"
+  unittest: '>=0.11.4 <0.12.0'
