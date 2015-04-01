@@ -4,7 +4,7 @@ import 'graph.dart';
 
 final UNESCAPED_ID_PATTERN = new RegExp(r"^[a-zA-Z\200-\377_][a-zA-Z\200-\377_0-9]*$");
 
-String write(Graph g) {
+String writeDot(Graph g) {
   var ec = g.isDirected ? "->" : "--";
   var writer = new _Writer();
 
