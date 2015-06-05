@@ -17,7 +17,7 @@ String writeDot(Graph g) {
 
   var graphAttrs = g.graph();
   if (graphAttrs is Map) {
-    graphAttrs.forEach((v, k) {
+    graphAttrs.forEach((k, v) {
       writer.writeLine("${id(k)}=${id(v)};");
     });
   }
@@ -44,7 +44,7 @@ void _writeSubgraph(Graph g, v, _Writer writer) {
       writer.indent();
 
       if (g.node(w) is Map) {
-        g.node(w).forEach((val, key) {
+        g.node(w).forEach((key, val) {
           writer.writeLine("${id(key)}=${id(val)};");
         });
       }
@@ -117,12 +117,12 @@ class _Writer {
     _shouldIndent = true;
   }
 
-  void write(String str) {
+  void write(str) {
     if (_shouldIndent) {
       _shouldIndent = false;
       _content += _indent;
     }
-    _content += str;
+    _content += str.toString();
   }
 
   String toString() => _content;
