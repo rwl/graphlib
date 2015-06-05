@@ -7,3 +7,4 @@ export 'src/alg/alg.dart';
 export 'src/layout/layout.dart' show layout;
 
 export 'src/write.dart' show writeDot;
+export 'src/dot.dart';
