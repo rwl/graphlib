@@ -5,9 +5,53 @@ class Font {
   const Font(this._name);
   String toString() => _name;
 
-  static const TIMES_ROMAN = const Font('Times-Roman');
-  static const HELVETICA = const Font('Helvectica');
+  static const AVANTGARDE_BOOK = const Font('AvantGarde-Book');
+  static const AVANTGARDE_BOOK_OBLIQUE = const Font('AvantGarde-BookOblique');
+  static const AVANTGARDE_DEMI = const Font('AvantGarde-Demi');
+  static const AVANTGARDE_DEMI_OBLIQUE = const Font('AvantGarde-DemiOblique');
+
+  static const BOOKMAN_DEMI = const Font('Bookman-Demi');
+  static const BOOKMAN_DEMI_ITALIC = const Font('Bookman-DemiItalic');
+  static const BOOKMAN_LIGHT = const Font('Bookman-Light');
+  static const BOOKMAN_LIGHT_ITALIC = const Font('Bookman-LightItalic');
+
   static const COURIER = const Font('Courier');
+  static const COURIER_BOLD = const Font('Courier-Bold');
+  static const COURIER_BOLD_OBLIQUE = const Font('Courier-BoldOblique');
+  static const COURIER_OBLIQUE = const Font('Courier-Oblique');
+
+  static const HELVETICA = const Font('Helvetica');
+  static const HELVETICA_BOLD = const Font('Helvetica-Bold');
+  static const HELVETICA_BOLD_OBLIQUE = const Font('Helvetica-BoldOblique');
+  static const HELVETICA_NARROW = const Font('Helvetica-Narrow');
+  static const HELVETICA_NARROW_BOLD = const Font('Helvetica-Narrow-Bold');
+  static const HELVETICA_NARROW_BOLD_OBLIQUE =
+      const Font('Helvetica-Narrow-BoldOblique');
+  static const HELVETICA_NARROW_OBLIQUE =
+      const Font('Helvetica-Narrow-Oblique');
+  static const HELVETICA_OBLIQUE = const Font('Helvetica-Oblique');
+
+  static const NEWCENTURYSCHLBK_BOLD = const Font('NewCenturySchlbk-Bold');
+  static const NEWCENTURYSCHLBK_BOLD_ITALIC =
+      const Font('NewCenturySchlbk-BoldItalic');
+  static const NEWCENTURYSCHLBK_ITALIC = const Font('NewCenturySchlbk-Italic');
+  static const NEWCENTURYSCHLBK_ROMAN = const Font('NewCenturySchlbk-Roman');
+
+  static const PALATINO_BOLD = const Font('Palatino-Bold');
+  static const PALATINO_BOLD_ITALIC = const Font('Palatino-BoldItalic');
+  static const PALATINO_ITALIC = const Font('Palatino-Italic');
+  static const PALATINO_ROMAN = const Font('Palatino-Roman');
+
+  static const SYMBOL = const Font('Symbol');
+
+  static const TIMES_BOLD = const Font('Times-Bold');
+  static const TIMES_BOLD_ITALIC = const Font('Times-BoldItalic');
+  static const TIMES_ITALIC = const Font('Times-Italic');
+  static const TIMES_ROMAN = const Font('Times-Roman');
+
+  static const ZAPFCHANCERY_MEDIUM_ITALIC =
+      const Font('ZapfChancery-MediumItalic');
+  static const ZAPFDINGBATS = const Font('ZapfDingbats');
 }
 
 class Color {
@@ -258,29 +302,6 @@ class ClusterStyle {
   static const STRIPED = const ClusterStyle._('striped');
 }
 
-class NodeAttr {
-  String label;
-  Font fontname;
-  int fontsize;
-  NodeStyle style;
-  Color fillcolor;
-  Shape shape;
-  num width, height;
-
-  Map<String, String> toMap() {
-    final m = <String, String>{};
-    if (label != null) m['label'] = label;
-    if (fontname != null) m['fontname'] = fontname.toString();
-    if (fontsize != null) m['fontsize'] = fontsize.toString();
-    if (style != null) m['style'] = style.toString();
-    if (fillcolor != null) m['fillcolor'] = fillcolor.toString();
-    if (shape != null) m['shape'] = shape.toString();
-    if (width != null) m['width'] = width.toString();
-    if (height != null) m['height'] = height.toString();
-    return m;
-  }
-}
-
 class Dir {
   final String _name;
   const Dir._(this._name);
@@ -292,9 +313,23 @@ class Dir {
 }
 
 class ArrowShape {
-  final String _name;
-  const ArrowShape(this._name);
-  String toString() => _name;
+  final String _aname;
+
+  const ArrowShape(this._aname);
+
+  factory ArrowShape.compound(ArrowShape shape1, ArrowShape shape2,
+      [ArrowShape shape3, ArrowShape shape4]) {
+    var aname = '$shape1$shape2';
+    if (shape3 != null) {
+      aname += shape3.toString();
+    }
+    if (shape4 != null) {
+      aname += shape4.toString();
+    }
+    return new ArrowShape(aname);
+  }
+
+  String toString() => _aname;
 
   static const BOX = const ArrowShape('box');
   static const CROW = const ArrowShape('crow');
@@ -307,6 +342,51 @@ class ArrowShape {
   static const NORMAL = const ArrowShape('normal');
   static const TEE = const ArrowShape('tee');
   static const VEE = const ArrowShape('vee');
+
+  static const OBOX = const ArrowShape('obox');
+  static const ODIAMOND = const ArrowShape('odiamond');
+  static const ODOT = const ArrowShape('odot');
+  static const OINV = const ArrowShape('oinv');
+  static const ONORMAL = const ArrowShape('onormal');
+}
+
+class NodeAttr {
+  String label;
+  Font fontname;
+  int fontsize;
+  NodeStyle style;
+  Color fillcolor;
+  Shape shape;
+  num width, height;
+
+  Map<String, String> toMap() {
+    final m = <String, String>{};
+    if (label != null) {
+      m['label'] = label;
+    }
+    if (fontname != null) {
+      m['fontname'] = fontname.toString();
+    }
+    if (fontsize != null) {
+      m['fontsize'] = fontsize.toString();
+    }
+    if (style != null) {
+      m['style'] = style.toString();
+    }
+    if (fillcolor != null) {
+      m['fillcolor'] = fillcolor.toString();
+    }
+    if (shape != null) {
+      m['shape'] = shape.toString();
+    }
+    if (width != null) {
+      m['width'] = width.toString();
+    }
+    if (height != null) {
+      m['height'] = height.toString();
+    }
+    return m;
+  }
 }
 
 class EdgeAttr {
