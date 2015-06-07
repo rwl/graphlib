@@ -356,6 +356,7 @@ class NodeAttr {
   int fontsize;
   NodeStyle style;
   Color fillcolor;
+  Color color;
   Shape shape;
   num width, height;
 
@@ -375,6 +376,9 @@ class NodeAttr {
     }
     if (fillcolor != null) {
       m['fillcolor'] = fillcolor.toString();
+    }
+    if (color != null) {
+      m['color'] = color.toString();
     }
     if (shape != null) {
       m['shape'] = shape.toString();
@@ -420,6 +424,8 @@ class GraphAttr {
   Font fontname;
   int fontsize;
   Color bgcolor;
+  Color color;
+  ClusterStyle style;
 
   Map<String, String> toMap() {
     final m = <String, String>{};
@@ -434,6 +440,12 @@ class GraphAttr {
     }
     if (bgcolor != null) {
       m['bgcolor'] = bgcolor.toString();
+    }
+    if (color != null) {
+      m['color'] = color.toString();
+    }
+    if (style != null) {
+      m['style'] = style.toString();
     }
     return m;
   }
