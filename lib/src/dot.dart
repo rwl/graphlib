@@ -1,452 +1,411 @@
 library graphlib.dot;
 
-class Font {
-  final String _name;
-  const Font(this._name);
-  String toString() => _name;
+import 'attr.pb.dart';
 
-  static const AVANTGARDE_BOOK = const Font('AvantGarde-Book');
-  static const AVANTGARDE_BOOK_OBLIQUE = const Font('AvantGarde-BookOblique');
-  static const AVANTGARDE_DEMI = const Font('AvantGarde-Demi');
-  static const AVANTGARDE_DEMI_OBLIQUE = const Font('AvantGarde-DemiOblique');
+const fontNames = const <Font, String>{
 
-  static const BOOKMAN_DEMI = const Font('Bookman-Demi');
-  static const BOOKMAN_DEMI_ITALIC = const Font('Bookman-DemiItalic');
-  static const BOOKMAN_LIGHT = const Font('Bookman-Light');
-  static const BOOKMAN_LIGHT_ITALIC = const Font('Bookman-LightItalic');
+  Font.AVANTGARDE_BOOK: 'AvantGarde-Book',
+  Font.AVANTGARDE_BOOK_OBLIQUE: 'AvantGarde-BookOblique',
+  Font.AVANTGARDE_DEMI: 'AvantGarde-Demi',
+  Font.AVANTGARDE_DEMI_OBLIQUE: 'AvantGarde-DemiOblique',
 
-  static const COURIER = const Font('Courier');
-  static const COURIER_BOLD = const Font('Courier-Bold');
-  static const COURIER_BOLD_OBLIQUE = const Font('Courier-BoldOblique');
-  static const COURIER_OBLIQUE = const Font('Courier-Oblique');
+  Font.BOOKMAN_DEMI: 'Bookman-Demi',
+  Font.BOOKMAN_DEMI_ITALIC: 'Bookman-DemiItalic',
+  Font.BOOKMAN_LIGHT: 'Bookman-Light',
+  Font.BOOKMAN_LIGHT_ITALIC: 'Bookman-LightItalic',
 
-  static const HELVETICA = const Font('Helvetica');
-  static const HELVETICA_BOLD = const Font('Helvetica-Bold');
-  static const HELVETICA_BOLD_OBLIQUE = const Font('Helvetica-BoldOblique');
-  static const HELVETICA_NARROW = const Font('Helvetica-Narrow');
-  static const HELVETICA_NARROW_BOLD = const Font('Helvetica-Narrow-Bold');
-  static const HELVETICA_NARROW_BOLD_OBLIQUE =
-      const Font('Helvetica-Narrow-BoldOblique');
-  static const HELVETICA_NARROW_OBLIQUE =
-      const Font('Helvetica-Narrow-Oblique');
-  static const HELVETICA_OBLIQUE = const Font('Helvetica-Oblique');
+  Font.COURIER: 'Courier',
+  Font.COURIER_BOLD: 'Courier-Bold',
+  Font.COURIER_BOLD_OBLIQUE: 'Courier-BoldOblique',
+  Font.COURIER_OBLIQUE: 'Courier-Oblique',
 
-  static const NEWCENTURYSCHLBK_BOLD = const Font('NewCenturySchlbk-Bold');
-  static const NEWCENTURYSCHLBK_BOLD_ITALIC =
-      const Font('NewCenturySchlbk-BoldItalic');
-  static const NEWCENTURYSCHLBK_ITALIC = const Font('NewCenturySchlbk-Italic');
-  static const NEWCENTURYSCHLBK_ROMAN = const Font('NewCenturySchlbk-Roman');
+  Font.HELVETICA: 'Helvetica',
+  Font.HELVETICA_BOLD: 'Helvetica-Bold',
+  Font.HELVETICA_BOLD_OBLIQUE: 'Helvetica-BoldOblique',
+  Font.HELVETICA_NARROW: 'Helvetica-Narrow',
+  Font.HELVETICA_NARROW_BOLD: 'Helvetica-Narrow-Bold',
+  Font.HELVETICA_NARROW_BOLD_OBLIQUE: 'Helvetica-Narrow-BoldOblique',
+  Font.HELVETICA_NARROW_OBLIQUE: 'Helvetica-Narrow-Oblique',
+  Font.HELVETICA_OBLIQUE: 'Helvetica-Oblique',
 
-  static const PALATINO_BOLD = const Font('Palatino-Bold');
-  static const PALATINO_BOLD_ITALIC = const Font('Palatino-BoldItalic');
-  static const PALATINO_ITALIC = const Font('Palatino-Italic');
-  static const PALATINO_ROMAN = const Font('Palatino-Roman');
+  Font.NEWCENTURYSCHLBK_BOLD: 'NewCenturySchlbk-Bold',
+  Font.NEWCENTURYSCHLBK_BOLD_ITALIC: 'NewCenturySchlbk-BoldItalic',
+  Font.NEWCENTURYSCHLBK_ITALIC: 'NewCenturySchlbk-Italic',
+  Font.NEWCENTURYSCHLBK_ROMAN: 'NewCenturySchlbk-Roman',
 
-  static const SYMBOL = const Font('Symbol');
+  Font.PALATINO_BOLD: 'Palatino-Bold',
+  Font.PALATINO_BOLD_ITALIC: 'Palatino-BoldItalic',
+  Font.PALATINO_ITALIC: 'Palatino-Italic',
+  Font.PALATINO_ROMAN: 'Palatino-Roman',
 
-  static const TIMES_BOLD = const Font('Times-Bold');
-  static const TIMES_BOLD_ITALIC = const Font('Times-BoldItalic');
-  static const TIMES_ITALIC = const Font('Times-Italic');
-  static const TIMES_ROMAN = const Font('Times-Roman');
+  Font.SYMBOL: 'Symbol',
 
-  static const ZAPFCHANCERY_MEDIUM_ITALIC =
-      const Font('ZapfChancery-MediumItalic');
-  static const ZAPFDINGBATS = const Font('ZapfDingbats');
-}
+  Font.TIMES_BOLD: 'Times-Bold',
+  Font.TIMES_BOLD_ITALIC: 'Times-BoldItalic',
+  Font.TIMES_ITALIC: 'Times-Italic',
+  Font.TIMES_ROMAN: 'Times-Roman',
 
-class Color {
-  final String _value;
-  const Color(this._value);
-  const Color.hsv(double h, double s, double v) : _value = '$h, $s, $v';
-  String toString() => _value;
+  Font.ZAPFCHANCERY_MEDIUM_ITALIC: 'ZapfChancery-MediumItalic',
+  Font.ZAPFDINGBATS: 'ZapfDingbats'
+};
 
-  static const ALICE_BLUE = const Color('aliceblue');
-  static const ANTIQUE_WHITE = const Color('antiquewhite');
-  static const AQUA = const Color('aqua');
-  static const AQUAMARINE = const Color('aquamarine');
-  static const AZURE = const Color('azure');
-  static const BEIGE = const Color('beige');
-  static const BISQUE = const Color('bisque');
-  static const BLACK = const Color('black');
-  static const BLANCHED_ALMOND = const Color('blanchedalmond');
-  static const BLUE = const Color('blue');
-  static const BLUE_VIOLET = const Color('blueviolet');
-  static const BROWN = const Color('brown');
-  static const BURLYWOOD = const Color('burlywood');
-  static const CADET_BLUE = const Color('cadetblue');
-  static const CHARTREUSE = const Color('chartreuse');
-  static const CHOCOLATE = const Color('chocolate');
-  static const CORAL = const Color('coral');
-  static const CORNFLOWER_BLUE = const Color('cornflowerblue');
-  static const CORNSILK = const Color('cornsilk');
-  static const CRIMSON = const Color('crimson');
-  static const CYAN = const Color('cyan');
+const colorNames = const <Color, String>{
 
-  static const DARK_BLUE = const Color('darkblue');
-  static const DARK_CYAN = const Color('darkcyan');
-  static const DARK_GOLDENROD = const Color('darkgoldenrod');
-  static const DARK_GRAY = const Color('darkgray');
-  static const DARK_GREEN = const Color('darkgreen');
-  static const DARK_GREY = const Color('darkgrey');
-  static const DARK_KHAKI = const Color('darkkhaki');
-  static const DARK_MAGENTA = const Color('darkmagenta');
-  static const DARK_OLIVE_GREEN = const Color('darkolivegreen');
-  static const DARK_ORANGE = const Color('darkorange');
-  static const DARK_ORCHID = const Color('darkorchid');
-  static const DARK_RED = const Color('darkred');
-  static const DARK_SALMON = const Color('darksalmon');
-  static const DARK_SEA_GREEN = const Color('darkseagreen');
-  static const DARK_SLATE_BLUE = const Color('darkslateblue');
-  static const DARK_SLATE_GRAY = const Color('darkslategray');
-  static const DARK_SLATE_GREY = const Color('darkslategrey');
-  static const DARK_TURQUOISE = const Color('darkturquoise');
-  static const DARK_VIOLET = const Color('darkviolet');
+  Color.ALICE_BLUE: 'aliceblue',
+  Color.ANTIQUE_WHITE: 'antiquewhite',
+  Color.AQUA: 'aqua',
+  Color.AQUAMARINE: 'aquamarine',
+  Color.AZURE: 'azure',
+  Color.BEIGE: 'beige',
+  Color.BISQUE: 'bisque',
+  Color.BLACK: 'black',
+  Color.BLANCHED_ALMOND: 'blanchedalmond',
+  Color.BLUE: 'blue',
+  Color.BLUE_VIOLET: 'blueviolet',
+  Color.BROWN: 'brown',
+  Color.BURLYWOOD: 'burlywood',
+  Color.CADET_BLUE: 'cadetblue',
+  Color.CHARTREUSE: 'chartreuse',
+  Color.CHOCOLATE: 'chocolate',
+  Color.CORAL: 'coral',
+  Color.CORNFLOWER_BLUE: 'cornflowerblue',
+  Color.CORNSILK: 'cornsilk',
+  Color.CRIMSON: 'crimson',
+  Color.CYAN: 'cyan',
 
-  static const DEEP_PINK = const Color('deeppink');
-  static const DEEP_SKY_BLUE = const Color('deepskyblue');
-  static const DIM_GRAY = const Color('dimgray');
-  static const DIM_GREY = const Color('dimgrey');
-  static const DODGER_BLUE = const Color('dodgerblue');
-  static const FIREBRICK = const Color('firebrick');
-  static const FLORAL_WHITE = const Color('floralwhite');
-  static const FOREST_GREEN = const Color('forestgreen');
-  static const FUCHSIA = const Color('fuchsia');
-  static const GAINSBORO = const Color('gainsboro');
-  static const GHOST_WHITE = const Color('ghostwhite');
-  static const GOLD = const Color('gold');
-  static const GOLDENROD = const Color('goldenrod');
-  static const GRAY = const Color('gray');
-  static const GREY = const Color('grey');
-  static const GREEN = const Color('green');
-  static const GREEN_YELLOW = const Color('greenyellow');
-  static const HONEYDEW = const Color('honeydew');
-  static const HOT_PINK = const Color('hotpink');
-  static const INDIAN_RED = const Color('indianred');
-  static const INDIGO = const Color('indigo');
-  static const IVORY = const Color('ivory');
-  static const KHAKI = const Color('khaki');
-  static const LAVENDER = const Color('lavender');
-  static const LAVENDERBLUSH = const Color('lavenderblush');
-  static const LAWN_GREEN = const Color('lawngreen');
-  static const LEMON_CHIFFON = const Color('lemonchiffon');
+  Color.DARK_BLUE: 'darkblue',
+  Color.DARK_CYAN: 'darkcyan',
+  Color.DARK_GOLDENROD: 'darkgoldenrod',
+  Color.DARK_GRAY: 'darkgray',
+  Color.DARK_GREEN: 'darkgreen',
+  Color.DARK_GREY: 'darkgrey',
+  Color.DARK_KHAKI: 'darkkhaki',
+  Color.DARK_MAGENTA: 'darkmagenta',
+  Color.DARK_OLIVE_GREEN: 'darkolivegreen',
+  Color.DARK_ORANGE: 'darkorange',
+  Color.DARK_ORCHID: 'darkorchid',
+  Color.DARK_RED: 'darkred',
+  Color.DARK_SALMON: 'darksalmon',
+  Color.DARK_SEA_GREEN: 'darkseagreen',
+  Color.DARK_SLATE_BLUE: 'darkslateblue',
+  Color.DARK_SLATE_GRAY: 'darkslategray',
+  Color.DARK_SLATE_GREY: 'darkslategrey',
+  Color.DARK_TURQUOISE: 'darkturquoise',
+  Color.DARK_VIOLET: 'darkviolet',
 
-  static const LIGHT_BLUE = const Color('lightblue');
-  static const LIGHT_CORAL = const Color('lightcoral');
-  static const LIGHT_CYAN = const Color('lightcyan');
-  static const LIGHT_GOLDENRODYELLOW = const Color('lightgoldenrodyellow');
-  static const LIGHT_GRAY = const Color('lightgray');
-  static const LIGHT_GREEN = const Color('lightgreen');
-  static const LIGHT_GREY = const Color('lightgrey');
-  static const LIGHT_PINK = const Color('lightpink');
-  static const LIGHT_SALMON = const Color('lightsalmon');
-  static const LIGHT_SEA_GREEN = const Color('lightseagreen');
-  static const LIGHT_SKY_BLUE = const Color('lightskyblue');
-  static const LIGHT_SLATE_GRAY = const Color('lightslategray');
-  static const LIGHT_SLATE_GREY = const Color('lightslategrey');
-  static const LIGHT_STEEL_BLUE = const Color('lightsteelblue');
-  static const LIGHT_YELLOW = const Color('lightyellow');
-  static const LIME = const Color('lime');
-  static const LIME_GREEN = const Color('limegreen');
-  static const LINEN = const Color('linen');
-  static const MAGENTA = const Color('magenta');
-  static const MAROON = const Color('maroon');
+  Color.DEEP_PINK: 'deeppink',
+  Color.DEEP_SKY_BLUE: 'deepskyblue',
+  Color.DIM_GRAY: 'dimgray',
+  Color.DIM_GREY: 'dimgrey',
+  Color.DODGER_BLUE: 'dodgerblue',
+  Color.FIREBRICK: 'firebrick',
+  Color.FLORAL_WHITE: 'floralwhite',
+  Color.FOREST_GREEN: 'forestgreen',
+  Color.FUCHSIA: 'fuchsia',
+  Color.GAINSBORO: 'gainsboro',
+  Color.GHOST_WHITE: 'ghostwhite',
+  Color.GOLD: 'gold',
+  Color.GOLDENROD: 'goldenrod',
+  Color.GRAY: 'gray',
+  Color.GREY: 'grey',
+  Color.GREEN: 'green',
+  Color.GREEN_YELLOW: 'greenyellow',
+  Color.HONEYDEW: 'honeydew',
+  Color.HOT_PINK: 'hotpink',
+  Color.INDIAN_RED: 'indianred',
+  Color.INDIGO: 'indigo',
+  Color.IVORY: 'ivory',
+  Color.KHAKI: 'khaki',
+  Color.LAVENDER: 'lavender',
+  Color.LAVENDERBLUSH: 'lavenderblush',
+  Color.LAWN_GREEN: 'lawngreen',
+  Color.LEMON_CHIFFON: 'lemonchiffon',
 
-  static const MEDIUM_AQUAMARINE = const Color('mediumaquamarine');
-  static const MEDIUM_BLUE = const Color('mediumblue');
-  static const MEDIUM_ORCHID = const Color('mediumorchid');
-  static const MEDIUM_PURPLE = const Color('mediumpurple');
-  static const MEDIUM_SEA_GREEN = const Color('mediumseagreen');
-  static const MEDIUM_SLATE_BLUE = const Color('mediumslateblue');
-  static const MEDIUM_SPRING_GREEN = const Color('mediumspringgreen');
-  static const MEDIUM_TURQUOISE = const Color('mediumturquoise');
-  static const MEDIUM_VIOLET_RED = const Color('mediumvioletred');
+  Color.LIGHT_BLUE: 'lightblue',
+  Color.LIGHT_CORAL: 'lightcoral',
+  Color.LIGHT_CYAN: 'lightcyan',
+  Color.LIGHT_GOLDENRODYELLOW: 'lightgoldenrodyellow',
+  Color.LIGHT_GRAY: 'lightgray',
+  Color.LIGHT_GREEN: 'lightgreen',
+  Color.LIGHT_GREY: 'lightgrey',
+  Color.LIGHT_PINK: 'lightpink',
+  Color.LIGHT_SALMON: 'lightsalmon',
+  Color.LIGHT_SEA_GREEN: 'lightseagreen',
+  Color.LIGHT_SKY_BLUE: 'lightskyblue',
+  Color.LIGHT_SLATE_GRAY: 'lightslategray',
+  Color.LIGHT_SLATE_GREY: 'lightslategrey',
+  Color.LIGHT_STEEL_BLUE: 'lightsteelblue',
+  Color.LIGHT_YELLOW: 'lightyellow',
+  Color.LIME: 'lime',
+  Color.LIME_GREEN: 'limegreen',
+  Color.LINEN: 'linen',
+  Color.MAGENTA: 'magenta',
+  Color.MAROON: 'maroon',
 
-  static const MIDNIGHT_BLUE = const Color('midnightblue');
-  static const MINT_CREAM = const Color('mintcream');
-  static const MISTY_ROSE = const Color('mistyrose');
-  static const MOCCASIN = const Color('moccasin');
-  static const NAVAJO_WHITE = const Color('navajowhite');
-  static const NAVY = const Color('navy');
-  static const OLD_LACE = const Color('oldlace');
-  static const OLIVE = const Color('olive');
-  static const OLIVE_DRAB = const Color('olivedrab');
-  static const ORANGE = const Color('orange');
-  static const ORANGE_RED = const Color('orangered');
-  static const ORCHID = const Color('orchid');
-  static const PALE_GOLDENROD = const Color('palegoldenrod');
-  static const PALE_GREEN = const Color('palegreen');
-  static const PALE_TURQUOISE = const Color('paleturquoise');
-  static const PALE_VIOLET_RED = const Color('palevioletred');
-  static const PAPAYAWHIP = const Color('papayawhip');
-  static const PEACHPUFF = const Color('peachpuff');
-  static const PERU = const Color('peru');
-  static const PINK = const Color('pink');
-  static const PLUM = const Color('plum');
-  static const POWDER_BLUE = const Color('powderblue');
-  static const PURPLE = const Color('purple');
-  static const RED = const Color('red');
-  static const ROSY_BROWN = const Color('rosybrown');
-  static const ROYAL_BLUE = const Color('royalblue');
-  static const SADDLE_BROWN = const Color('saddlebrown');
-  static const SALMON = const Color('salmon');
-  static const SANDY_BROWN = const Color('sandybrown');
-  static const SEA_GREEN = const Color('seagreen');
-  static const SEASHELL = const Color('seashell');
-  static const SIENNA = const Color('sienna');
-  static const SILVER = const Color('silver');
-  static const SKY_BLUE = const Color('skyblue');
-  static const SLATE_BLUE = const Color('slateblue');
-  static const SLATE_GRAY = const Color('slategray');
-  static const SLATE_GREY = const Color('slategrey');
-  static const SNOW = const Color('snow');
-  static const SPRING_GREEN = const Color('springgreen');
-  static const STEEL_BLUE = const Color('steelblue');
-  static const TAN = const Color('tan');
-  static const TEAL = const Color('teal');
-  static const THISTLE = const Color('thistle');
-  static const TOMATO = const Color('tomato');
-  static const TURQUOISE = const Color('turquoise');
-  static const VIOLET = const Color('violet');
-  static const WHEAT = const Color('wheat');
-  static const WHITE = const Color('white');
-  static const WHITE_SMOKE = const Color('whitesmoke');
-  static const YELLOW = const Color('yellow');
-  static const YELLOW_GREEN = const Color('yellowgreen');
-}
+  Color.MEDIUM_AQUAMARINE: 'mediumaquamarine',
+  Color.MEDIUM_BLUE: 'mediumblue',
+  Color.MEDIUM_ORCHID: 'mediumorchid',
+  Color.MEDIUM_PURPLE: 'mediumpurple',
+  Color.MEDIUM_SEA_GREEN: 'mediumseagreen',
+  Color.MEDIUM_SLATE_BLUE: 'mediumslateblue',
+  Color.MEDIUM_SPRING_GREEN: 'mediumspringgreen',
+  Color.MEDIUM_TURQUOISE: 'mediumturquoise',
+  Color.MEDIUM_VIOLET_RED: 'mediumvioletred',
 
-class Shape {
-  final String _name;
-  const Shape.name(this._name);
-  String toString() => _name;
+  Color.MIDNIGHT_BLUE: 'midnightblue',
+  Color.MINT_CREAM: 'mintcream',
+  Color.MISTY_ROSE: 'mistyrose',
+  Color.MOCCASIN: 'moccasin',
+  Color.NAVAJO_WHITE: 'navajowhite',
+  Color.NAVY: 'navy',
+  Color.OLD_LACE: 'oldlace',
+  Color.OLIVE: 'olive',
+  Color.OLIVE_DRAB: 'olivedrab',
+  Color.ORANGE: 'orange',
+  Color.ORANGE_RED: 'orangered',
+  Color.ORCHID: 'orchid',
+  Color.PALE_GOLDENROD: 'palegoldenrod',
+  Color.PALE_GREEN: 'palegreen',
+  Color.PALE_TURQUOISE: 'paleturquoise',
+  Color.PALE_VIOLET_RED: 'palevioletred',
+  Color.PAPAYAWHIP: 'papayawhip',
+  Color.PEACHPUFF: 'peachpuff',
+  Color.PERU: 'peru',
+  Color.PINK: 'pink',
+  Color.PLUM: 'plum',
+  Color.POWDER_BLUE: 'powderblue',
+  Color.PURPLE: 'purple',
+  Color.RED: 'red',
+  Color.ROSY_BROWN: 'rosybrown',
+  Color.ROYAL_BLUE: 'royalblue',
+  Color.SADDLE_BROWN: 'saddlebrown',
+  Color.SALMON: 'salmon',
+  Color.SANDY_BROWN: 'sandybrown',
+  Color.SEA_GREEN: 'seagreen',
+  Color.SEASHELL: 'seashell',
+  Color.SIENNA: 'sienna',
+  Color.SILVER: 'silver',
+  Color.SKY_BLUE: 'skyblue',
+  Color.SLATE_BLUE: 'slateblue',
+  Color.SLATE_GRAY: 'slategray',
+  Color.SLATE_GREY: 'slategrey',
+  Color.SNOW: 'snow',
+  Color.SPRING_GREEN: 'springgreen',
+  Color.STEEL_BLUE: 'steelblue',
+  Color.TAN: 'tan',
+  Color.TEAL: 'teal',
+  Color.THISTLE: 'thistle',
+  Color.TOMATO: 'tomato',
+  Color.TURQUOISE: 'turquoise',
+  Color.VIOLET: 'violet',
+  Color.WHEAT: 'wheat',
+  Color.WHITE: 'white',
+  Color.WHITE_SMOKE: 'whitesmoke',
+  Color.YELLOW: 'yellow',
+  Color.YELLOW_GREEN: 'yellowgreen',
+};
 
-  static const BOX = const Shape.name('box');
-  static const POLYGON = const Shape.name('polygon');
-  static const ELLIPSE = const Shape.name('ellipse');
-  static const OVAL = const Shape.name('oval');
+const shapeNames = const <NodeSpec_Shape, String>{
 
-  static const CIRCLE = const Shape.name('circle');
-  static const POINT = const Shape.name('point');
-  static const EGG = const Shape.name('egg');
-  static const TRIANGLE = const Shape.name('triangle');
+  NodeSpec_Shape.BOX: 'box',
+  NodeSpec_Shape.POLYGON: 'polygon',
+  NodeSpec_Shape.ELLIPSE: 'ellipse',
+  NodeSpec_Shape.OVAL: 'oval',
 
-  static const PLAIN_TEXT = const Shape.name('plaintext');
-  static const PLAIN = const Shape.name('plain');
-  static const DIAMOND = const Shape.name('diamond');
-  static const TRAPEZIUM = const Shape.name('trapezium');
+  NodeSpec_Shape.CIRCLE: 'circle',
+  NodeSpec_Shape.POINT: 'point',
+  NodeSpec_Shape.EGG: 'egg',
+  NodeSpec_Shape.TRIANGLE: 'triangle',
 
-  static const PARALLELOGRAM = const Shape.name('parallelogram');
-  static const HOUSE = const Shape.name('house');
-  static const PENTAGON = const Shape.name('pentagon');
-  static const HEXAGON = const Shape.name('hexagon');
+  NodeSpec_Shape.PLAIN_TEXT: 'plaintext',
+  NodeSpec_Shape.PLAIN: 'plain',
+  NodeSpec_Shape.DIAMOND: 'diamond',
+  NodeSpec_Shape.TRAPEZIUM: 'trapezium',
 
-  static const SEPTAGON = const Shape.name('septagon');
-  static const OCTAGON = const Shape.name('octagon');
-  static const DOUBLE_CIRCLE = const Shape.name('doublecircle');
-  static const DOUBLE_OCTAGON = const Shape.name('doubleoctagon');
+  NodeSpec_Shape.PARALLELOGRAM: 'parallelogram',
+  NodeSpec_Shape.HOUSE: 'house',
+  NodeSpec_Shape.PENTAGON: 'pentagon',
+  NodeSpec_Shape.HEXAGON: 'hexagon',
 
-  static const TRIPLE_OCTAGON = const Shape.name('tripleoctagon');
-  static const INV_TRIANGLE = const Shape.name('invtriangle');
-  static const INV_TRAPEZIUM = const Shape.name('invtrapezium');
-  static const INV_HOUSE = const Shape.name('invhouse');
+  NodeSpec_Shape.SEPTAGON: 'septagon',
+  NodeSpec_Shape.OCTAGON: 'octagon',
+  NodeSpec_Shape.DOUBLE_CIRCLE: 'doublecircle',
+  NodeSpec_Shape.DOUBLE_OCTAGON: 'doubleoctagon',
 
-  static const MDIAMOND = const Shape.name('Mdiamond');
-  static const MSQUARE = const Shape.name('Msquare');
-  static const MCIRCLE = const Shape.name('Mcircle');
-  static const RECT = const Shape.name('rect');
+  NodeSpec_Shape.TRIPLE_OCTAGON: 'tripleoctagon',
+  NodeSpec_Shape.INV_TRIANGLE: 'invtriangle',
+  NodeSpec_Shape.INV_TRAPEZIUM: 'invtrapezium',
+  NodeSpec_Shape.INV_HOUSE: 'invhouse',
 
-  static const RECTANGLE = const Shape.name('rectangle');
-  static const SQUARE = const Shape.name('square');
-  static const STAR = const Shape.name('star');
-  static const NONE = const Shape.name('none');
-}
+  NodeSpec_Shape.MDIAMOND: 'Mdiamond',
+  NodeSpec_Shape.MSQUARE: 'Msquare',
+  NodeSpec_Shape.MCIRCLE: 'Mcircle',
+  NodeSpec_Shape.RECT: 'rect',
 
-class NodeStyle {
-  final String _name;
-  const NodeStyle._(this._name);
-  String toString() => _name;
+  NodeSpec_Shape.RECTANGLE: 'rectangle',
+  NodeSpec_Shape.SQUARE: 'square',
+  NodeSpec_Shape.STAR: 'star',
+  NodeSpec_Shape.NONE: 'none'
+};
 
-  static const SOLID = const NodeStyle._('solid');
-  static const DASHED = const NodeStyle._('dashed');
-  static const DOTTED = const NodeStyle._('dotted');
-  static const BOLD = const NodeStyle._('bold');
-  static const ROUNDED = const NodeStyle._('rounded');
-  static const DIAGONALS = const NodeStyle._('diagonals');
+const nodeStyles = const <NodeSpec_Style, String>{
 
-  static const FILLED = const NodeStyle._('filled');
-  static const STRIPED = const NodeStyle._('striped');
-  static const WEDGED = const NodeStyle._('wedged');
-}
+  NodeSpec_Style.SOLID: 'solid',
+  NodeSpec_Style.DASHED: 'dashed',
+  NodeSpec_Style.DOTTED: 'dotted',
+  NodeSpec_Style.BOLD: 'bold',
+  NodeSpec_Style.ROUNDED: 'rounded',
+  NodeSpec_Style.DIAGONALS: 'diagonals',
 
-class EdgeStyle {
-  final String _name;
-  const EdgeStyle._(this._name);
-  String toString() => _name;
+  NodeSpec_Style.FILLED: 'filled',
+  NodeSpec_Style.STRIPED: 'striped',
+  NodeSpec_Style.WEDGED: 'wedged'
+};
 
-  static const SOLID = const EdgeStyle._('solid');
-  static const DASHED = const EdgeStyle._('dashed');
-  static const DOTTED = const EdgeStyle._('dotted');
-  static const BOLD = const EdgeStyle._('bold');
-}
+const edgeStyles = const <EdgeSpec_Style, String>{
 
-class ClusterStyle {
-  final String _name;
-  const ClusterStyle._(this._name);
-  String toString() => _name;
+  EdgeSpec_Style.SOLID: 'solid',
+  EdgeSpec_Style.DASHED: 'dashed',
+  EdgeSpec_Style.DOTTED: 'dotted',
+  EdgeSpec_Style.BOLD: 'bold'
+};
 
-  static const SOLID = const ClusterStyle._('solid');
-  static const DASHED = const ClusterStyle._('dashed');
-  static const DOTTED = const ClusterStyle._('dotted');
-  static const BOLD = const ClusterStyle._('bold');
-  static const ROUNDED = const ClusterStyle._('rounded');
-  static const FILLED = const ClusterStyle._('filled');
-  static const STRIPED = const ClusterStyle._('striped');
-}
+const clusterStyles = const <GraphSpec_Style, String>{
 
-class Dir {
-  final String _name;
-  const Dir._(this._name);
-  String toString() => _name;
+  GraphSpec_Style.SOLID: 'solid',
+  GraphSpec_Style.DASHED: 'dashed',
+  GraphSpec_Style.DOTTED: 'dotted',
+  GraphSpec_Style.BOLD: 'bold',
+  GraphSpec_Style.ROUNDED: 'rounded',
+  GraphSpec_Style.FILLED: 'filled',
+  GraphSpec_Style.STRIPED: 'striped'
+};
 
-  static const BOTH = const Dir._('both');
-  static const FORWARD = const Dir._('forward');
-  static const BACK = const Dir._('back');
-}
+const dirNames = const <EdgeSpec_Dir, String>{
 
-class ArrowShape {
-  final String _aname;
+  EdgeSpec_Dir.BOTH: 'both',
+  EdgeSpec_Dir.FORWARD: 'forward',
+  EdgeSpec_Dir.BACK: 'back'
+};
 
-  const ArrowShape(this._aname);
-
-  factory ArrowShape.compound(ArrowShape shape1, ArrowShape shape2,
-      [ArrowShape shape3, ArrowShape shape4]) {
-    var aname = '$shape1$shape2';
-    if (shape3 != null) {
-      aname += shape3.toString();
-    }
-    if (shape4 != null) {
-      aname += shape4.toString();
-    }
-    return new ArrowShape(aname);
+String compoundArrowShape(EdgeSpec_CompoundArrowShape compound) {
+  var aname = '${compound.shape1}${compound.shape2}';
+  if (compound.shape3 != null) {
+    aname += arrowShapes[compound.shape3];
   }
-
-  String toString() => _aname;
-
-  static const BOX = const ArrowShape('box');
-  static const CROW = const ArrowShape('crow');
-  static const CURVE = const ArrowShape('curve');
-  static const ICURVE = const ArrowShape('icurve');
-  static const DIAMOND = const ArrowShape('diamond');
-  static const DOT = const ArrowShape('dot');
-  static const INV = const ArrowShape('inv');
-  static const NONE = const ArrowShape('none');
-  static const NORMAL = const ArrowShape('normal');
-  static const TEE = const ArrowShape('tee');
-  static const VEE = const ArrowShape('vee');
-
-  static const OBOX = const ArrowShape('obox');
-  static const ODIAMOND = const ArrowShape('odiamond');
-  static const ODOT = const ArrowShape('odot');
-  static const OINV = const ArrowShape('oinv');
-  static const ONORMAL = const ArrowShape('onormal');
+  if (compound.shape4 != null) {
+    aname += arrowShapes[compound.shape4];
+  }
+  return aname;
 }
 
-class NodeAttr {
-  String label;
-  Font fontname;
-  int fontsize;
-  NodeStyle style;
-  Color fillcolor;
-  Color color;
-  Shape shape;
-  num width, height;
+const arrowShapes = const <EdgeSpec_ArrowShape, String>{
+  EdgeSpec_ArrowShape.BOX: 'box',
+  EdgeSpec_ArrowShape.CROW: 'crow',
+  EdgeSpec_ArrowShape.CURVE: 'curve',
+  EdgeSpec_ArrowShape.ICURVE: 'icurve',
+  EdgeSpec_ArrowShape.DIAMOND: 'diamond',
+  EdgeSpec_ArrowShape.DOT: 'dot',
+  EdgeSpec_ArrowShape.INV: 'inv',
+  EdgeSpec_ArrowShape.NONE: 'none',
+  EdgeSpec_ArrowShape.NORMAL: 'normal',
+  EdgeSpec_ArrowShape.TEE: 'tee',
+  EdgeSpec_ArrowShape.VEE: 'vee',
 
-  Map<String, String> toMap() {
-    final m = <String, String>{};
-    if (label != null) {
-      m['label'] = label;
-    }
-    if (fontname != null) {
-      m['fontname'] = fontname.toString();
-    }
-    if (fontsize != null) {
-      m['fontsize'] = fontsize.toString();
-    }
-    if (style != null) {
-      m['style'] = style.toString();
-    }
-    if (fillcolor != null) {
-      m['fillcolor'] = fillcolor.toString();
-    }
-    if (color != null) {
-      m['color'] = color.toString();
-    }
-    if (shape != null) {
-      m['shape'] = shape.toString();
-    }
-    if (width != null) {
-      m['width'] = width.toString();
-    }
-    if (height != null) {
-      m['height'] = height.toString();
-    }
-    return m;
+  EdgeSpec_ArrowShape.OBOX: 'obox',
+  EdgeSpec_ArrowShape.ODIAMOND: 'odiamond',
+  EdgeSpec_ArrowShape.ODOT: 'odot',
+  EdgeSpec_ArrowShape.OINV: 'oinv',
+  EdgeSpec_ArrowShape.ONORMAL: 'onormal'
+};
+
+Map<String, String> nodeMap(NodeSpec node) {
+  final m = <String, String>{};
+  if (node.hasId()) {
+    m['id'] = node.id;
   }
+  if (node.hasLabel()) {
+    m['label'] = node.label;
+  }
+  if (node.hasFontName()) {
+    m['fontname'] = fontNames[node.fontName];
+  }
+  if (node.hasFontSize()) {
+    m['fontsize'] = node.fontSize.toString();
+  }
+  if (node.hasStyle()) {
+    m['style'] = nodeStyles[node.style];
+  }
+  if (node.hasFillColor()) {
+    m['fillcolor'] = colorNames[node.fillColor];
+  }
+  if (node.hasColor()) {
+    m['color'] = colorNames[node.color];
+  }
+  if (node.hasShape()) {
+    m['shape'] = shapeNames[node.shape];
+  }
+  if (node.hasWidth()) {
+    m['width'] = node.width.toString();
+  }
+  if (node.hasHeight()) {
+    m['height'] = node.height.toString();
+  }
+  if (node.hasPenWidth()) {
+    m['penwidth'] = node.penWidth.toString();
+  }
+  return m;
 }
 
-class EdgeAttr {
-  String headlabel, taillabel;
-  Dir dir;
-  ArrowShape arrowhead, arrowtail;
-
-  Map<String, String> toMap() {
-    final m = <String, String>{};
-    if (headlabel != null) {
-      m['headlabel'] = headlabel;
-    }
-    if (taillabel != null) {
-      m['taillabel'] = taillabel;
-    }
-    if (dir != null) {
-      m['dir'] = dir.toString();
-    }
-    if (arrowhead != null) {
-      m['arrowhead'] = arrowhead.toString();
-    }
-    if (arrowtail != null) {
-      m['arrowtail'] = arrowtail.toString();
-    }
-    return m;
+Map<String, String> edgeMap(EdgeSpec edge) {
+  final m = <String, String>{};
+  if (edge.hasId()) {
+    m['id'] = edge.id;
   }
+  if (edge.hasHeadLabel()) {
+    m['headlabel'] = edge.headLabel;
+  }
+  if (edge.hasTailLabel()) {
+    m['taillabel'] = edge.tailLabel;
+  }
+  if (edge.hasDir()) {
+    m['dir'] = dirNames[edge.dir];
+  }
+  if (edge.hasArrowHead()) {
+    m['arrowhead'] = arrowShapes[edge.arrowHead];
+  }
+  if (edge.hasArrowTail()) {
+    m['arrowtail'] = arrowShapes[edge.arrowTail];
+  }
+  return m;
 }
 
-class GraphAttr {
-  String label;
-  Font fontname;
-  int fontsize;
-  Color bgcolor;
-  Color color;
-  ClusterStyle style;
-
-  Map<String, String> toMap() {
-    final m = <String, String>{};
-    if (label != null) {
-      m['label'] = label;
-    }
-    if (fontname != null) {
-      m['fontname'] = fontname.toString();
-    }
-    if (fontsize != null) {
-      m['fontsize'] = fontsize.toString();
-    }
-    if (bgcolor != null) {
-      m['bgcolor'] = bgcolor.toString();
-    }
-    if (color != null) {
-      m['color'] = color.toString();
-    }
-    if (style != null) {
-      m['style'] = style.toString();
-    }
-    return m;
+Map<String, String> graphMap(GraphSpec graph) {
+  final m = <String, String>{};
+  if (graph.hasLabel()) {
+    m['label'] = graph.label;
   }
+  if (graph.hasFontName()) {
+    m['fontname'] = fontNames[graph.fontName];
+  }
+  if (graph.hasFontSize()) {
+    m['fontsize'] = graph.fontSize.toString();
+  }
+  if (graph.hasBgColor()) {
+    m['bgcolor'] = colorNames[graph.bgColor];
+  }
+  if (graph.hasColor()) {
+    m['color'] = colorNames[graph.color];
+  }
+  if (graph.hasStyle()) {
+    m['style'] = nodeStyles[graph.style];
+  }
+  if (graph.hasRankDir()) {
+    const dirs = const {
+      GraphSpec_RankDir.TB: 'TB',
+      GraphSpec_RankDir.LR: 'LR'
+    };
+    m['rankdir'] = dirs[graph.rankDir];
+  }
+  return m;
 }
