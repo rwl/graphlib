@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package graphlib.dot.attr;
+package graphlib.dot;
 
 enum Font {
   AVANTGARDE_BOOK = 1;
@@ -203,7 +203,7 @@ enum Color {
   YELLOW_GREEN = 147;
 }
 
-message NodeSpec {
+message NodeAttributes {
 
   enum Shape {
     BOX = 1;
@@ -273,7 +273,7 @@ message NodeSpec {
   optional double pen_width = 11;
 }
 
-message EdgeSpec {
+message EdgeAttributes {
 
   enum Style {
     SOLID = 1;
@@ -323,7 +323,7 @@ message EdgeSpec {
   optional ArrowShape arrow_tail = 6;
 }
 
-message GraphSpec {
+message GraphAttributes {
 
   enum Style {
     SOLID = 1;

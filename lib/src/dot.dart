@@ -1,8 +1,8 @@
-library graphlib.dot;
+library graphlib.dot.util;
 
 import 'attr.pb.dart';
 
-const fontNames = const <Font, String>{
+const Map<Font, String> fontNames = const {
 
   Font.AVANTGARDE_BOOK: 'AvantGarde-Book',
   Font.AVANTGARDE_BOOK_OBLIQUE: 'AvantGarde-BookOblique',
@@ -49,7 +49,7 @@ const fontNames = const <Font, String>{
   Font.ZAPFDINGBATS: 'ZapfDingbats'
 };
 
-const colorNames = const <Color, String>{
+const Map<Color, String> colorNames = const {
 
   Color.ALICE_BLUE: 'aliceblue',
   Color.ANTIQUE_WHITE: 'antiquewhite',
@@ -205,90 +205,90 @@ const colorNames = const <Color, String>{
   Color.YELLOW_GREEN: 'yellowgreen',
 };
 
-const shapeNames = const <NodeSpec_Shape, String>{
+const Map<NodeAttributes_Shape, String> shapeNames = const {
 
-  NodeSpec_Shape.BOX: 'box',
-  NodeSpec_Shape.POLYGON: 'polygon',
-  NodeSpec_Shape.ELLIPSE: 'ellipse',
-  NodeSpec_Shape.OVAL: 'oval',
+  NodeAttributes_Shape.BOX: 'box',
+  NodeAttributes_Shape.POLYGON: 'polygon',
+  NodeAttributes_Shape.ELLIPSE: 'ellipse',
+  NodeAttributes_Shape.OVAL: 'oval',
 
-  NodeSpec_Shape.CIRCLE: 'circle',
-  NodeSpec_Shape.POINT: 'point',
-  NodeSpec_Shape.EGG: 'egg',
-  NodeSpec_Shape.TRIANGLE: 'triangle',
+  NodeAttributes_Shape.CIRCLE: 'circle',
+  NodeAttributes_Shape.POINT: 'point',
+  NodeAttributes_Shape.EGG: 'egg',
+  NodeAttributes_Shape.TRIANGLE: 'triangle',
 
-  NodeSpec_Shape.PLAIN_TEXT: 'plaintext',
-  NodeSpec_Shape.PLAIN: 'plain',
-  NodeSpec_Shape.DIAMOND: 'diamond',
-  NodeSpec_Shape.TRAPEZIUM: 'trapezium',
+  NodeAttributes_Shape.PLAIN_TEXT: 'plaintext',
+  NodeAttributes_Shape.PLAIN: 'plain',
+  NodeAttributes_Shape.DIAMOND: 'diamond',
+  NodeAttributes_Shape.TRAPEZIUM: 'trapezium',
 
-  NodeSpec_Shape.PARALLELOGRAM: 'parallelogram',
-  NodeSpec_Shape.HOUSE: 'house',
-  NodeSpec_Shape.PENTAGON: 'pentagon',
-  NodeSpec_Shape.HEXAGON: 'hexagon',
+  NodeAttributes_Shape.PARALLELOGRAM: 'parallelogram',
+  NodeAttributes_Shape.HOUSE: 'house',
+  NodeAttributes_Shape.PENTAGON: 'pentagon',
+  NodeAttributes_Shape.HEXAGON: 'hexagon',
 
-  NodeSpec_Shape.SEPTAGON: 'septagon',
-  NodeSpec_Shape.OCTAGON: 'octagon',
-  NodeSpec_Shape.DOUBLE_CIRCLE: 'doublecircle',
-  NodeSpec_Shape.DOUBLE_OCTAGON: 'doubleoctagon',
+  NodeAttributes_Shape.SEPTAGON: 'septagon',
+  NodeAttributes_Shape.OCTAGON: 'octagon',
+  NodeAttributes_Shape.DOUBLE_CIRCLE: 'doublecircle',
+  NodeAttributes_Shape.DOUBLE_OCTAGON: 'doubleoctagon',
 
-  NodeSpec_Shape.TRIPLE_OCTAGON: 'tripleoctagon',
-  NodeSpec_Shape.INV_TRIANGLE: 'invtriangle',
-  NodeSpec_Shape.INV_TRAPEZIUM: 'invtrapezium',
-  NodeSpec_Shape.INV_HOUSE: 'invhouse',
+  NodeAttributes_Shape.TRIPLE_OCTAGON: 'tripleoctagon',
+  NodeAttributes_Shape.INV_TRIANGLE: 'invtriangle',
+  NodeAttributes_Shape.INV_TRAPEZIUM: 'invtrapezium',
+  NodeAttributes_Shape.INV_HOUSE: 'invhouse',
 
-  NodeSpec_Shape.MDIAMOND: 'Mdiamond',
-  NodeSpec_Shape.MSQUARE: 'Msquare',
-  NodeSpec_Shape.MCIRCLE: 'Mcircle',
-  NodeSpec_Shape.RECT: 'rect',
+  NodeAttributes_Shape.MDIAMOND: 'Mdiamond',
+  NodeAttributes_Shape.MSQUARE: 'Msquare',
+  NodeAttributes_Shape.MCIRCLE: 'Mcircle',
+  NodeAttributes_Shape.RECT: 'rect',
 
-  NodeSpec_Shape.RECTANGLE: 'rectangle',
-  NodeSpec_Shape.SQUARE: 'square',
-  NodeSpec_Shape.STAR: 'star',
-  NodeSpec_Shape.NONE: 'none'
+  NodeAttributes_Shape.RECTANGLE: 'rectangle',
+  NodeAttributes_Shape.SQUARE: 'square',
+  NodeAttributes_Shape.STAR: 'star',
+  NodeAttributes_Shape.NONE: 'none'
 };
 
-const nodeStyles = const <NodeSpec_Style, String>{
+const Map<NodeAttributes_Style, String> nodeStyles = const {
 
-  NodeSpec_Style.SOLID: 'solid',
-  NodeSpec_Style.DASHED: 'dashed',
-  NodeSpec_Style.DOTTED: 'dotted',
-  NodeSpec_Style.BOLD: 'bold',
-  NodeSpec_Style.ROUNDED: 'rounded',
-  NodeSpec_Style.DIAGONALS: 'diagonals',
+  NodeAttributes_Style.SOLID: 'solid',
+  NodeAttributes_Style.DASHED: 'dashed',
+  NodeAttributes_Style.DOTTED: 'dotted',
+  NodeAttributes_Style.BOLD: 'bold',
+  NodeAttributes_Style.ROUNDED: 'rounded',
+  NodeAttributes_Style.DIAGONALS: 'diagonals',
 
-  NodeSpec_Style.FILLED: 'filled',
-  NodeSpec_Style.STRIPED: 'striped',
-  NodeSpec_Style.WEDGED: 'wedged'
+  NodeAttributes_Style.FILLED: 'filled',
+  NodeAttributes_Style.STRIPED: 'striped',
+  NodeAttributes_Style.WEDGED: 'wedged'
 };
 
-const edgeStyles = const <EdgeSpec_Style, String>{
+const Map<EdgeAttributes_Style, String> edgeStyles = const {
 
-  EdgeSpec_Style.SOLID: 'solid',
-  EdgeSpec_Style.DASHED: 'dashed',
-  EdgeSpec_Style.DOTTED: 'dotted',
-  EdgeSpec_Style.BOLD: 'bold'
+  EdgeAttributes_Style.SOLID: 'solid',
+  EdgeAttributes_Style.DASHED: 'dashed',
+  EdgeAttributes_Style.DOTTED: 'dotted',
+  EdgeAttributes_Style.BOLD: 'bold'
 };
 
-const clusterStyles = const <GraphSpec_Style, String>{
+const Map<GraphAttributes_Style, String> clusterStyles = const {
 
-  GraphSpec_Style.SOLID: 'solid',
-  GraphSpec_Style.DASHED: 'dashed',
-  GraphSpec_Style.DOTTED: 'dotted',
-  GraphSpec_Style.BOLD: 'bold',
-  GraphSpec_Style.ROUNDED: 'rounded',
-  GraphSpec_Style.FILLED: 'filled',
-  GraphSpec_Style.STRIPED: 'striped'
+  GraphAttributes_Style.SOLID: 'solid',
+  GraphAttributes_Style.DASHED: 'dashed',
+  GraphAttributes_Style.DOTTED: 'dotted',
+  GraphAttributes_Style.BOLD: 'bold',
+  GraphAttributes_Style.ROUNDED: 'rounded',
+  GraphAttributes_Style.FILLED: 'filled',
+  GraphAttributes_Style.STRIPED: 'striped'
 };
 
-const dirNames = const <EdgeSpec_Dir, String>{
+const Map<EdgeAttributes_Dir, String> dirNames = const {
 
-  EdgeSpec_Dir.BOTH: 'both',
-  EdgeSpec_Dir.FORWARD: 'forward',
-  EdgeSpec_Dir.BACK: 'back'
+  EdgeAttributes_Dir.BOTH: 'both',
+  EdgeAttributes_Dir.FORWARD: 'forward',
+  EdgeAttributes_Dir.BACK: 'back'
 };
 
-String compoundArrowShape(EdgeSpec_CompoundArrowShape compound) {
+String compoundArrowShape(EdgeAttributes_CompoundArrowShape compound) {
   var aname = '${compound.shape1}${compound.shape2}';
   if (compound.shape3 != null) {
     aname += arrowShapes[compound.shape3];
@@ -299,113 +299,113 @@ String compoundArrowShape(EdgeSpec_CompoundArrowShape compound) {
   return aname;
 }
 
-const arrowShapes = const <EdgeSpec_ArrowShape, String>{
-  EdgeSpec_ArrowShape.BOX: 'box',
-  EdgeSpec_ArrowShape.CROW: 'crow',
-  EdgeSpec_ArrowShape.CURVE: 'curve',
-  EdgeSpec_ArrowShape.ICURVE: 'icurve',
-  EdgeSpec_ArrowShape.DIAMOND: 'diamond',
-  EdgeSpec_ArrowShape.DOT: 'dot',
-  EdgeSpec_ArrowShape.INV: 'inv',
-  EdgeSpec_ArrowShape.NONE: 'none',
-  EdgeSpec_ArrowShape.NORMAL: 'normal',
-  EdgeSpec_ArrowShape.TEE: 'tee',
-  EdgeSpec_ArrowShape.VEE: 'vee',
+const Map<EdgeAttributes_ArrowShape, String> arrowShapes = const {
+  EdgeAttributes_ArrowShape.BOX: 'box',
+  EdgeAttributes_ArrowShape.CROW: 'crow',
+  EdgeAttributes_ArrowShape.CURVE: 'curve',
+  EdgeAttributes_ArrowShape.ICURVE: 'icurve',
+  EdgeAttributes_ArrowShape.DIAMOND: 'diamond',
+  EdgeAttributes_ArrowShape.DOT: 'dot',
+  EdgeAttributes_ArrowShape.INV: 'inv',
+  EdgeAttributes_ArrowShape.NONE: 'none',
+  EdgeAttributes_ArrowShape.NORMAL: 'normal',
+  EdgeAttributes_ArrowShape.TEE: 'tee',
+  EdgeAttributes_ArrowShape.VEE: 'vee',
 
-  EdgeSpec_ArrowShape.OBOX: 'obox',
-  EdgeSpec_ArrowShape.ODIAMOND: 'odiamond',
-  EdgeSpec_ArrowShape.ODOT: 'odot',
-  EdgeSpec_ArrowShape.OINV: 'oinv',
-  EdgeSpec_ArrowShape.ONORMAL: 'onormal'
+  EdgeAttributes_ArrowShape.OBOX: 'obox',
+  EdgeAttributes_ArrowShape.ODIAMOND: 'odiamond',
+  EdgeAttributes_ArrowShape.ODOT: 'odot',
+  EdgeAttributes_ArrowShape.OINV: 'oinv',
+  EdgeAttributes_ArrowShape.ONORMAL: 'onormal'
 };
 
-Map<String, String> nodeMap(NodeSpec node) {
+Map<String, String> nodeMap(NodeAttributes attr) {
   final m = <String, String>{};
-  if (node.hasId()) {
-    m['id'] = node.id;
+  if (attr.hasId()) {
+    m['id'] = attr.id;
   }
-  if (node.hasLabel()) {
-    m['label'] = node.label;
+  if (attr.hasLabel()) {
+    m['label'] = attr.label;
   }
-  if (node.hasFontName()) {
-    m['fontname'] = fontNames[node.fontName];
+  if (attr.hasFontName()) {
+    m['fontname'] = fontNames[attr.fontName];
   }
-  if (node.hasFontSize()) {
-    m['fontsize'] = node.fontSize.toString();
+  if (attr.hasFontSize()) {
+    m['fontsize'] = attr.fontSize.toString();
   }
-  if (node.hasStyle()) {
-    m['style'] = nodeStyles[node.style];
+  if (attr.hasStyle()) {
+    m['style'] = nodeStyles[attr.style];
   }
-  if (node.hasFillColor()) {
-    m['fillcolor'] = colorNames[node.fillColor];
+  if (attr.hasFillColor()) {
+    m['fillcolor'] = colorNames[attr.fillColor];
   }
-  if (node.hasColor()) {
-    m['color'] = colorNames[node.color];
+  if (attr.hasColor()) {
+    m['color'] = colorNames[attr.color];
   }
-  if (node.hasShape()) {
-    m['shape'] = shapeNames[node.shape];
+  if (attr.hasShape()) {
+    m['shape'] = shapeNames[attr.shape];
   }
-  if (node.hasWidth()) {
-    m['width'] = node.width.toString();
+  if (attr.hasWidth()) {
+    m['width'] = attr.width.toString();
   }
-  if (node.hasHeight()) {
-    m['height'] = node.height.toString();
+  if (attr.hasHeight()) {
+    m['height'] = attr.height.toString();
   }
-  if (node.hasPenWidth()) {
-    m['penwidth'] = node.penWidth.toString();
+  if (attr.hasPenWidth()) {
+    m['penwidth'] = attr.penWidth.toString();
   }
   return m;
 }
 
-Map<String, String> edgeMap(EdgeSpec edge) {
+Map<String, String> edgeMap(EdgeAttributes attr) {
   final m = <String, String>{};
-  if (edge.hasId()) {
-    m['id'] = edge.id;
+  if (attr.hasId()) {
+    m['id'] = attr.id;
   }
-  if (edge.hasHeadLabel()) {
-    m['headlabel'] = edge.headLabel;
+  if (attr.hasHeadLabel()) {
+    m['headlabel'] = attr.headLabel;
   }
-  if (edge.hasTailLabel()) {
-    m['taillabel'] = edge.tailLabel;
+  if (attr.hasTailLabel()) {
+    m['taillabel'] = attr.tailLabel;
   }
-  if (edge.hasDir()) {
-    m['dir'] = dirNames[edge.dir];
+  if (attr.hasDir()) {
+    m['dir'] = dirNames[attr.dir];
   }
-  if (edge.hasArrowHead()) {
-    m['arrowhead'] = arrowShapes[edge.arrowHead];
+  if (attr.hasArrowHead()) {
+    m['arrowhead'] = arrowShapes[attr.arrowHead];
   }
-  if (edge.hasArrowTail()) {
-    m['arrowtail'] = arrowShapes[edge.arrowTail];
+  if (attr.hasArrowTail()) {
+    m['arrowtail'] = arrowShapes[attr.arrowTail];
   }
   return m;
 }
 
-Map<String, String> graphMap(GraphSpec graph) {
+Map<String, String> graphMap(GraphAttributes attr) {
   final m = <String, String>{};
-  if (graph.hasLabel()) {
-    m['label'] = graph.label;
+  if (attr.hasLabel()) {
+    m['label'] = attr.label;
   }
-  if (graph.hasFontName()) {
-    m['fontname'] = fontNames[graph.fontName];
+  if (attr.hasFontName()) {
+    m['fontname'] = fontNames[attr.fontName];
   }
-  if (graph.hasFontSize()) {
-    m['fontsize'] = graph.fontSize.toString();
+  if (attr.hasFontSize()) {
+    m['fontsize'] = attr.fontSize.toString();
   }
-  if (graph.hasBgColor()) {
-    m['bgcolor'] = colorNames[graph.bgColor];
+  if (attr.hasBgColor()) {
+    m['bgcolor'] = colorNames[attr.bgColor];
   }
-  if (graph.hasColor()) {
-    m['color'] = colorNames[graph.color];
+  if (attr.hasColor()) {
+    m['color'] = colorNames[attr.color];
   }
-  if (graph.hasStyle()) {
-    m['style'] = nodeStyles[graph.style];
+  if (attr.hasStyle()) {
+    m['style'] = clusterStyles[attr.style];
   }
-  if (graph.hasRankDir()) {
+  if (attr.hasRankDir()) {
     const dirs = const {
-      GraphSpec_RankDir.TB: 'TB',
-      GraphSpec_RankDir.LR: 'LR'
+      GraphAttributes_RankDir.TB: 'TB',
+      GraphAttributes_RankDir.LR: 'LR'
     };
-    m['rankdir'] = dirs[graph.rankDir];
+    m['rankdir'] = dirs[attr.rankDir];
   }
   return m;
 }

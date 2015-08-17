@@ -8,3 +8,4 @@ export 'src/layout/layout.dart' show layout;
 
 export 'src/write.dart' show writeDot;
 export 'src/dot.dart';
+export 'src/attr.pb.dart';

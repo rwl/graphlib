@@ -1,7 +1,7 @@
 ///
 //  Generated code. Do not modify.
 ///
-library graphlib.dot.attr;
+library graphlib.dot;
 
 import 'package:fixnum/fixnum.dart';
 import 'package:protobuf/protobuf.dart';
@@ -392,41 +392,41 @@ class Color extends ProtobufEnum {
   const Color._(int v, String n) : super(v, n);
 }
 
-class NodeSpec_Shape extends ProtobufEnum {
-  static const NodeSpec_Shape BOX = const NodeSpec_Shape._(1, 'BOX');
-  static const NodeSpec_Shape POLYGON = const NodeSpec_Shape._(2, 'POLYGON');
-  static const NodeSpec_Shape ELLIPSE = const NodeSpec_Shape._(3, 'ELLIPSE');
-  static const NodeSpec_Shape OVAL = const NodeSpec_Shape._(4, 'OVAL');
-  static const NodeSpec_Shape CIRCLE = const NodeSpec_Shape._(5, 'CIRCLE');
-  static const NodeSpec_Shape POINT = const NodeSpec_Shape._(6, 'POINT');
-  static const NodeSpec_Shape EGG = const NodeSpec_Shape._(7, 'EGG');
-  static const NodeSpec_Shape TRIANGLE = const NodeSpec_Shape._(8, 'TRIANGLE');
-  static const NodeSpec_Shape PLAIN_TEXT = const NodeSpec_Shape._(9, 'PLAIN_TEXT');
-  static const NodeSpec_Shape PLAIN = const NodeSpec_Shape._(10, 'PLAIN');
-  static const NodeSpec_Shape DIAMOND = const NodeSpec_Shape._(11, 'DIAMOND');
-  static const NodeSpec_Shape TRAPEZIUM = const NodeSpec_Shape._(12, 'TRAPEZIUM');
-  static const NodeSpec_Shape PARALLELOGRAM = const NodeSpec_Shape._(13, 'PARALLELOGRAM');
-  static const NodeSpec_Shape HOUSE = const NodeSpec_Shape._(14, 'HOUSE');
-  static const NodeSpec_Shape PENTAGON = const NodeSpec_Shape._(15, 'PENTAGON');
-  static const NodeSpec_Shape HEXAGON = const NodeSpec_Shape._(16, 'HEXAGON');
-  static const NodeSpec_Shape SEPTAGON = const NodeSpec_Shape._(17, 'SEPTAGON');
-  static const NodeSpec_Shape OCTAGON = const NodeSpec_Shape._(18, 'OCTAGON');
-  static const NodeSpec_Shape DOUBLE_CIRCLE = const NodeSpec_Shape._(19, 'DOUBLE_CIRCLE');
-  static const NodeSpec_Shape DOUBLE_OCTAGON = const NodeSpec_Shape._(20, 'DOUBLE_OCTAGON');
-  static const NodeSpec_Shape TRIPLE_OCTAGON = const NodeSpec_Shape._(21, 'TRIPLE_OCTAGON');
-  static const NodeSpec_Shape INV_TRIANGLE = const NodeSpec_Shape._(22, 'INV_TRIANGLE');
-  static const NodeSpec_Shape INV_TRAPEZIUM = const NodeSpec_Shape._(23, 'INV_TRAPEZIUM');
-  static const NodeSpec_Shape INV_HOUSE = const NodeSpec_Shape._(24, 'INV_HOUSE');
-  static const NodeSpec_Shape MDIAMOND = const NodeSpec_Shape._(25, 'MDIAMOND');
-  static const NodeSpec_Shape MSQUARE = const NodeSpec_Shape._(26, 'MSQUARE');
-  static const NodeSpec_Shape MCIRCLE = const NodeSpec_Shape._(27, 'MCIRCLE');
-  static const NodeSpec_Shape RECT = const NodeSpec_Shape._(28, 'RECT');
-  static const NodeSpec_Shape RECTANGLE = const NodeSpec_Shape._(29, 'RECTANGLE');
-  static const NodeSpec_Shape SQUARE = const NodeSpec_Shape._(30, 'SQUARE');
-  static const NodeSpec_Shape STAR = const NodeSpec_Shape._(31, 'STAR');
-  static const NodeSpec_Shape NONE = const NodeSpec_Shape._(32, 'NONE');
+class NodeAttributes_Shape extends ProtobufEnum {
+  static const NodeAttributes_Shape BOX = const NodeAttributes_Shape._(1, 'BOX');
+  static const NodeAttributes_Shape POLYGON = const NodeAttributes_Shape._(2, 'POLYGON');
+  static const NodeAttributes_Shape ELLIPSE = const NodeAttributes_Shape._(3, 'ELLIPSE');
+  static const NodeAttributes_Shape OVAL = const NodeAttributes_Shape._(4, 'OVAL');
+  static const NodeAttributes_Shape CIRCLE = const NodeAttributes_Shape._(5, 'CIRCLE');
+  static const NodeAttributes_Shape POINT = const NodeAttributes_Shape._(6, 'POINT');
+  static const NodeAttributes_Shape EGG = const NodeAttributes_Shape._(7, 'EGG');
+  static const NodeAttributes_Shape TRIANGLE = const NodeAttributes_Shape._(8, 'TRIANGLE');
+  static const NodeAttributes_Shape PLAIN_TEXT = const NodeAttributes_Shape._(9, 'PLAIN_TEXT');
+  static const NodeAttributes_Shape PLAIN = const NodeAttributes_Shape._(10, 'PLAIN');
+  static const NodeAttributes_Shape DIAMOND = const NodeAttributes_Shape._(11, 'DIAMOND');
+  static const NodeAttributes_Shape TRAPEZIUM = const NodeAttributes_Shape._(12, 'TRAPEZIUM');
+  static const NodeAttributes_Shape PARALLELOGRAM = const NodeAttributes_Shape._(13, 'PARALLELOGRAM');
+  static const NodeAttributes_Shape HOUSE = const NodeAttributes_Shape._(14, 'HOUSE');
+  static const NodeAttributes_Shape PENTAGON = const NodeAttributes_Shape._(15, 'PENTAGON');
+  static const NodeAttributes_Shape HEXAGON = const NodeAttributes_Shape._(16, 'HEXAGON');
+  static const NodeAttributes_Shape SEPTAGON = const NodeAttributes_Shape._(17, 'SEPTAGON');
+  static const NodeAttributes_Shape OCTAGON = const NodeAttributes_Shape._(18, 'OCTAGON');
+  static const NodeAttributes_Shape DOUBLE_CIRCLE = const NodeAttributes_Shape._(19, 'DOUBLE_CIRCLE');
+  static const NodeAttributes_Shape DOUBLE_OCTAGON = const NodeAttributes_Shape._(20, 'DOUBLE_OCTAGON');
+  static const NodeAttributes_Shape TRIPLE_OCTAGON = const NodeAttributes_Shape._(21, 'TRIPLE_OCTAGON');
+  static const NodeAttributes_Shape INV_TRIANGLE = const NodeAttributes_Shape._(22, 'INV_TRIANGLE');
+  static const NodeAttributes_Shape INV_TRAPEZIUM = const NodeAttributes_Shape._(23, 'INV_TRAPEZIUM');
+  static const NodeAttributes_Shape INV_HOUSE = const NodeAttributes_Shape._(24, 'INV_HOUSE');
+  static const NodeAttributes_Shape MDIAMOND = const NodeAttributes_Shape._(25, 'MDIAMOND');
+  static const NodeAttributes_Shape MSQUARE = const NodeAttributes_Shape._(26, 'MSQUARE');
+  static const NodeAttributes_Shape MCIRCLE = const NodeAttributes_Shape._(27, 'MCIRCLE');
+  static const NodeAttributes_Shape RECT = const NodeAttributes_Shape._(28, 'RECT');
+  static const NodeAttributes_Shape RECTANGLE = const NodeAttributes_Shape._(29, 'RECTANGLE');
+  static const NodeAttributes_Shape SQUARE = const NodeAttributes_Shape._(30, 'SQUARE');
+  static const NodeAttributes_Shape STAR = const NodeAttributes_Shape._(31, 'STAR');
+  static const NodeAttributes_Shape NONE = const NodeAttributes_Shape._(32, 'NONE');
 
-  static const List<NodeSpec_Shape> values = const <NodeSpec_Shape> [
+  static const List<NodeAttributes_Shape> values = const <NodeAttributes_Shape> [
     BOX,
     POLYGON,
     ELLIPSE,
@@ -461,24 +461,24 @@ class NodeSpec_Shape extends ProtobufEnum {
     NONE,
   ];
 
-  static final Map<int, NodeSpec_Shape> _byValue = ProtobufEnum.initByValue(values);
-  static NodeSpec_Shape valueOf(int value) => _byValue[value];
+  static final Map<int, NodeAttributes_Shape> _byValue = ProtobufEnum.initByValue(values);
+  static NodeAttributes_Shape valueOf(int value) => _byValue[value];
 
-  const NodeSpec_Shape._(int v, String n) : super(v, n);
+  const NodeAttributes_Shape._(int v, String n) : super(v, n);
 }
 
-class NodeSpec_Style extends ProtobufEnum {
-  static const NodeSpec_Style SOLID = const NodeSpec_Style._(1, 'SOLID');
-  static const NodeSpec_Style DASHED = const NodeSpec_Style._(2, 'DASHED');
-  static const NodeSpec_Style DOTTED = const NodeSpec_Style._(3, 'DOTTED');
-  static const NodeSpec_Style BOLD = const NodeSpec_Style._(4, 'BOLD');
-  static const NodeSpec_Style ROUNDED = const NodeSpec_Style._(5, 'ROUNDED');
-  static const NodeSpec_Style DIAGONALS = const NodeSpec_Style._(6, 'DIAGONALS');
-  static const NodeSpec_Style FILLED = const NodeSpec_Style._(7, 'FILLED');
-  static const NodeSpec_Style STRIPED = const NodeSpec_Style._(8, 'STRIPED');
-  static const NodeSpec_Style WEDGED = const NodeSpec_Style._(9, 'WEDGED');
+class NodeAttributes_Style extends ProtobufEnum {
+  static const NodeAttributes_Style SOLID = const NodeAttributes_Style._(1, 'SOLID');
+  static const NodeAttributes_Style DASHED = const NodeAttributes_Style._(2, 'DASHED');
+  static const NodeAttributes_Style DOTTED = const NodeAttributes_Style._(3, 'DOTTED');
+  static const NodeAttributes_Style BOLD = const NodeAttributes_Style._(4, 'BOLD');
+  static const NodeAttributes_Style ROUNDED = const NodeAttributes_Style._(5, 'ROUNDED');
+  static const NodeAttributes_Style DIAGONALS = const NodeAttributes_Style._(6, 'DIAGONALS');
+  static const NodeAttributes_Style FILLED = const NodeAttributes_Style._(7, 'FILLED');
+  static const NodeAttributes_Style STRIPED = const NodeAttributes_Style._(8, 'STRIPED');
+  static const NodeAttributes_Style WEDGED = const NodeAttributes_Style._(9, 'WEDGED');
 
-  static const List<NodeSpec_Style> values = const <NodeSpec_Style> [
+  static const List<NodeAttributes_Style> values = const <NodeAttributes_Style> [
     SOLID,
     DASHED,
     DOTTED,
@@ -490,35 +490,35 @@ class NodeSpec_Style extends ProtobufEnum {
     WEDGED,
   ];
 
-  static final Map<int, NodeSpec_Style> _byValue = ProtobufEnum.initByValue(values);
-  static NodeSpec_Style valueOf(int value) => _byValue[value];
+  static final Map<int, NodeAttributes_Style> _byValue = ProtobufEnum.initByValue(values);
+  static NodeAttributes_Style valueOf(int value) => _byValue[value];
 
-  const NodeSpec_Style._(int v, String n) : super(v, n);
+  const NodeAttributes_Style._(int v, String n) : super(v, n);
 }
 
-class NodeSpec extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('NodeSpec')
+class NodeAttributes extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('NodeAttributes')
     ..a(1, 'id', GeneratedMessage.OS)
     ..a(2, 'label', GeneratedMessage.OS)
     ..e(3, 'fontName', GeneratedMessage.OE, Font.AVANTGARDE_BOOK, (var v) => Font.valueOf(v))
     ..a(4, 'fontSize', GeneratedMessage.OU3)
-    ..e(5, 'style', GeneratedMessage.OE, NodeSpec_Style.SOLID, (var v) => NodeSpec_Style.valueOf(v))
+    ..e(5, 'style', GeneratedMessage.OE, NodeAttributes_Style.SOLID, (var v) => NodeAttributes_Style.valueOf(v))
     ..e(6, 'fillColor', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
     ..e(7, 'color', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
-    ..e(8, 'shape', GeneratedMessage.OE, NodeSpec_Shape.BOX, (var v) => NodeSpec_Shape.valueOf(v))
+    ..e(8, 'shape', GeneratedMessage.OE, NodeAttributes_Shape.BOX, (var v) => NodeAttributes_Shape.valueOf(v))
     ..a(9, 'width', GeneratedMessage.OD)
     ..a(10, 'height', GeneratedMessage.OD)
     ..a(11, 'penWidth', GeneratedMessage.OD)
     ..hasRequiredFields = false
   ;
 
-  NodeSpec() : super();
-  NodeSpec.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  NodeSpec.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  NodeSpec clone() => new NodeSpec()..mergeFromMessage(this);
+  NodeAttributes() : super();
+  NodeAttributes.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  NodeAttributes.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  NodeAttributes clone() => new NodeAttributes()..mergeFromMessage(this);
   BuilderInfo get info_ => _i;
-  static NodeSpec create() => new NodeSpec();
-  static PbList<NodeSpec> createRepeated() => new PbList<NodeSpec>();
+  static NodeAttributes create() => new NodeAttributes();
+  static PbList<NodeAttributes> createRepeated() => new PbList<NodeAttributes>();
 
   String get id => getField(1);
   void set id(String v) { setField(1, v); }
@@ -540,8 +540,8 @@ class NodeSpec extends GeneratedMessage {
   bool hasFontSize() => hasField(4);
   void clearFontSize() => clearField(4);
 
-  NodeSpec_Style get style => getField(5);
-  void set style(NodeSpec_Style v) { setField(5, v); }
+  NodeAttributes_Style get style => getField(5);
+  void set style(NodeAttributes_Style v) { setField(5, v); }
   bool hasStyle() => hasField(5);
   void clearStyle() => clearField(5);
 
@@ -555,8 +555,8 @@ class NodeSpec extends GeneratedMessage {
   bool hasColor() => hasField(7);
   void clearColor() => clearField(7);
 
-  NodeSpec_Shape get shape => getField(8);
-  void set shape(NodeSpec_Shape v) { setField(8, v); }
+  NodeAttributes_Shape get shape => getField(8);
+  void set shape(NodeAttributes_Shape v) { setField(8, v); }
   bool hasShape() => hasField(8);
   void clearShape() => clearField(8);
 
@@ -576,61 +576,61 @@ class NodeSpec extends GeneratedMessage {
   void clearPenWidth() => clearField(11);
 }
 
-class EdgeSpec_Style extends ProtobufEnum {
-  static const EdgeSpec_Style SOLID = const EdgeSpec_Style._(1, 'SOLID');
-  static const EdgeSpec_Style DASHED = const EdgeSpec_Style._(2, 'DASHED');
-  static const EdgeSpec_Style DOTTED = const EdgeSpec_Style._(3, 'DOTTED');
-  static const EdgeSpec_Style BOLD = const EdgeSpec_Style._(4, 'BOLD');
+class EdgeAttributes_Style extends ProtobufEnum {
+  static const EdgeAttributes_Style SOLID = const EdgeAttributes_Style._(1, 'SOLID');
+  static const EdgeAttributes_Style DASHED = const EdgeAttributes_Style._(2, 'DASHED');
+  static const EdgeAttributes_Style DOTTED = const EdgeAttributes_Style._(3, 'DOTTED');
+  static const EdgeAttributes_Style BOLD = const EdgeAttributes_Style._(4, 'BOLD');
 
-  static const List<EdgeSpec_Style> values = const <EdgeSpec_Style> [
+  static const List<EdgeAttributes_Style> values = const <EdgeAttributes_Style> [
     SOLID,
     DASHED,
     DOTTED,
     BOLD,
   ];
 
-  static final Map<int, EdgeSpec_Style> _byValue = ProtobufEnum.initByValue(values);
-  static EdgeSpec_Style valueOf(int value) => _byValue[value];
+  static final Map<int, EdgeAttributes_Style> _byValue = ProtobufEnum.initByValue(values);
+  static EdgeAttributes_Style valueOf(int value) => _byValue[value];
 
-  const EdgeSpec_Style._(int v, String n) : super(v, n);
+  const EdgeAttributes_Style._(int v, String n) : super(v, n);
 }
 
-class EdgeSpec_Dir extends ProtobufEnum {
-  static const EdgeSpec_Dir BOTH = const EdgeSpec_Dir._(1, 'BOTH');
-  static const EdgeSpec_Dir FORWARD = const EdgeSpec_Dir._(2, 'FORWARD');
-  static const EdgeSpec_Dir BACK = const EdgeSpec_Dir._(3, 'BACK');
+class EdgeAttributes_Dir extends ProtobufEnum {
+  static const EdgeAttributes_Dir BOTH = const EdgeAttributes_Dir._(1, 'BOTH');
+  static const EdgeAttributes_Dir FORWARD = const EdgeAttributes_Dir._(2, 'FORWARD');
+  static const EdgeAttributes_Dir BACK = const EdgeAttributes_Dir._(3, 'BACK');
 
-  static const List<EdgeSpec_Dir> values = const <EdgeSpec_Dir> [
+  static const List<EdgeAttributes_Dir> values = const <EdgeAttributes_Dir> [
     BOTH,
     FORWARD,
     BACK,
   ];
 
-  static final Map<int, EdgeSpec_Dir> _byValue = ProtobufEnum.initByValue(values);
-  static EdgeSpec_Dir valueOf(int value) => _byValue[value];
+  static final Map<int, EdgeAttributes_Dir> _byValue = ProtobufEnum.initByValue(values);
+  static EdgeAttributes_Dir valueOf(int value) => _byValue[value];
 
-  const EdgeSpec_Dir._(int v, String n) : super(v, n);
+  const EdgeAttributes_Dir._(int v, String n) : super(v, n);
 }
 
-class EdgeSpec_ArrowShape extends ProtobufEnum {
-  static const EdgeSpec_ArrowShape BOX = const EdgeSpec_ArrowShape._(1, 'BOX');
-  static const EdgeSpec_ArrowShape CROW = const EdgeSpec_ArrowShape._(2, 'CROW');
-  static const EdgeSpec_ArrowShape CURVE = const EdgeSpec_ArrowShape._(3, 'CURVE');
-  static const EdgeSpec_ArrowShape ICURVE = const EdgeSpec_ArrowShape._(4, 'ICURVE');
-  static const EdgeSpec_ArrowShape DIAMOND = const EdgeSpec_ArrowShape._(5, 'DIAMOND');
-  static const EdgeSpec_ArrowShape DOT = const EdgeSpec_ArrowShape._(6, 'DOT');
-  static const EdgeSpec_ArrowShape INV = const EdgeSpec_ArrowShape._(7, 'INV');
-  static const EdgeSpec_ArrowShape NONE = const EdgeSpec_ArrowShape._(8, 'NONE');
-  static const EdgeSpec_ArrowShape NORMAL = const EdgeSpec_ArrowShape._(9, 'NORMAL');
-  static const EdgeSpec_ArrowShape TEE = const EdgeSpec_ArrowShape._(10, 'TEE');
-  static const EdgeSpec_ArrowShape VEE = const EdgeSpec_ArrowShape._(11, 'VEE');
-  static const EdgeSpec_ArrowShape OBOX = const EdgeSpec_ArrowShape._(12, 'OBOX');
-  static const EdgeSpec_ArrowShape ODIAMOND = const EdgeSpec_ArrowShape._(13, 'ODIAMOND');
-  static const EdgeSpec_ArrowShape ODOT = const EdgeSpec_ArrowShape._(14, 'ODOT');
-  static const EdgeSpec_ArrowShape OINV = const EdgeSpec_ArrowShape._(15, 'OINV');
-  static const EdgeSpec_ArrowShape ONORMAL = const EdgeSpec_ArrowShape._(16, 'ONORMAL');
+class EdgeAttributes_ArrowShape extends ProtobufEnum {
+  static const EdgeAttributes_ArrowShape BOX = const EdgeAttributes_ArrowShape._(1, 'BOX');
+  static const EdgeAttributes_ArrowShape CROW = const EdgeAttributes_ArrowShape._(2, 'CROW');
+  static const EdgeAttributes_ArrowShape CURVE = const EdgeAttributes_ArrowShape._(3, 'CURVE');
+  static const EdgeAttributes_ArrowShape ICURVE = const EdgeAttributes_ArrowShape._(4, 'ICURVE');
+  static const EdgeAttributes_ArrowShape DIAMOND = const EdgeAttributes_ArrowShape._(5, 'DIAMOND');
+  static const EdgeAttributes_ArrowShape DOT = const EdgeAttributes_ArrowShape._(6, 'DOT');
+  static const EdgeAttributes_ArrowShape INV = const EdgeAttributes_ArrowShape._(7, 'INV');
+  static const EdgeAttributes_ArrowShape NONE = const EdgeAttributes_ArrowShape._(8, 'NONE');
+  static const EdgeAttributes_ArrowShape NORMAL = const EdgeAttributes_ArrowShape._(9, 'NORMAL');
+  static const EdgeAttributes_ArrowShape TEE = const EdgeAttributes_ArrowShape._(10, 'TEE');
+  static const EdgeAttributes_ArrowShape VEE = const EdgeAttributes_ArrowShape._(11, 'VEE');
+  static const EdgeAttributes_ArrowShape OBOX = const EdgeAttributes_ArrowShape._(12, 'OBOX');
+  static const EdgeAttributes_ArrowShape ODIAMOND = const EdgeAttributes_ArrowShape._(13, 'ODIAMOND');
+  static const EdgeAttributes_ArrowShape ODOT = const EdgeAttributes_ArrowShape._(14, 'ODOT');
+  static const EdgeAttributes_ArrowShape OINV = const EdgeAttributes_ArrowShape._(15, 'OINV');
+  static const EdgeAttributes_ArrowShape ONORMAL = const EdgeAttributes_ArrowShape._(16, 'ONORMAL');
 
-  static const List<EdgeSpec_ArrowShape> values = const <EdgeSpec_ArrowShape> [
+  static const List<EdgeAttributes_ArrowShape> values = const <EdgeAttributes_ArrowShape> [
     BOX,
     CROW,
     CURVE,
@@ -649,68 +649,68 @@ class EdgeSpec_ArrowShape extends ProtobufEnum {
     ONORMAL,
   ];
 
-  static final Map<int, EdgeSpec_ArrowShape> _byValue = ProtobufEnum.initByValue(values);
-  static EdgeSpec_ArrowShape valueOf(int value) => _byValue[value];
+  static final Map<int, EdgeAttributes_ArrowShape> _byValue = ProtobufEnum.initByValue(values);
+  static EdgeAttributes_ArrowShape valueOf(int value) => _byValue[value];
 
-  const EdgeSpec_ArrowShape._(int v, String n) : super(v, n);
+  const EdgeAttributes_ArrowShape._(int v, String n) : super(v, n);
 }
 
-class EdgeSpec_CompoundArrowShape extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('EdgeSpec_CompoundArrowShape')
-    ..e(1, 'shape1', GeneratedMessage.OE, EdgeSpec_ArrowShape.BOX, (var v) => EdgeSpec_ArrowShape.valueOf(v))
-    ..e(2, 'shape2', GeneratedMessage.OE, EdgeSpec_ArrowShape.BOX, (var v) => EdgeSpec_ArrowShape.valueOf(v))
-    ..e(3, 'shape3', GeneratedMessage.OE, EdgeSpec_ArrowShape.BOX, (var v) => EdgeSpec_ArrowShape.valueOf(v))
-    ..e(4, 'shape4', GeneratedMessage.OE, EdgeSpec_ArrowShape.BOX, (var v) => EdgeSpec_ArrowShape.valueOf(v))
+class EdgeAttributes_CompoundArrowShape extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('EdgeAttributes_CompoundArrowShape')
+    ..e(1, 'shape1', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
+    ..e(2, 'shape2', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
+    ..e(3, 'shape3', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
+    ..e(4, 'shape4', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
     ..hasRequiredFields = false
   ;
 
-  EdgeSpec_CompoundArrowShape() : super();
-  EdgeSpec_CompoundArrowShape.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  EdgeSpec_CompoundArrowShape.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  EdgeSpec_CompoundArrowShape clone() => new EdgeSpec_CompoundArrowShape()..mergeFromMessage(this);
+  EdgeAttributes_CompoundArrowShape() : super();
+  EdgeAttributes_CompoundArrowShape.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  EdgeAttributes_CompoundArrowShape.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  EdgeAttributes_CompoundArrowShape clone() => new EdgeAttributes_CompoundArrowShape()..mergeFromMessage(this);
   BuilderInfo get info_ => _i;
-  static EdgeSpec_CompoundArrowShape create() => new EdgeSpec_CompoundArrowShape();
-  static PbList<EdgeSpec_CompoundArrowShape> createRepeated() => new PbList<EdgeSpec_CompoundArrowShape>();
+  static EdgeAttributes_CompoundArrowShape create() => new EdgeAttributes_CompoundArrowShape();
+  static PbList<EdgeAttributes_CompoundArrowShape> createRepeated() => new PbList<EdgeAttributes_CompoundArrowShape>();
 
-  EdgeSpec_ArrowShape get shape1 => getField(1);
-  void set shape1(EdgeSpec_ArrowShape v) { setField(1, v); }
+  EdgeAttributes_ArrowShape get shape1 => getField(1);
+  void set shape1(EdgeAttributes_ArrowShape v) { setField(1, v); }
   bool hasShape1() => hasField(1);
   void clearShape1() => clearField(1);
 
-  EdgeSpec_ArrowShape get shape2 => getField(2);
-  void set shape2(EdgeSpec_ArrowShape v) { setField(2, v); }
+  EdgeAttributes_ArrowShape get shape2 => getField(2);
+  void set shape2(EdgeAttributes_ArrowShape v) { setField(2, v); }
   bool hasShape2() => hasField(2);
   void clearShape2() => clearField(2);
 
-  EdgeSpec_ArrowShape get shape3 => getField(3);
-  void set shape3(EdgeSpec_ArrowShape v) { setField(3, v); }
+  EdgeAttributes_ArrowShape get shape3 => getField(3);
+  void set shape3(EdgeAttributes_ArrowShape v) { setField(3, v); }
   bool hasShape3() => hasField(3);
   void clearShape3() => clearField(3);
 
-  EdgeSpec_ArrowShape get shape4 => getField(4);
-  void set shape4(EdgeSpec_ArrowShape v) { setField(4, v); }
+  EdgeAttributes_ArrowShape get shape4 => getField(4);
+  void set shape4(EdgeAttributes_ArrowShape v) { setField(4, v); }
   bool hasShape4() => hasField(4);
   void clearShape4() => clearField(4);
 }
 
-class EdgeSpec extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('EdgeSpec')
+class EdgeAttributes extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('EdgeAttributes')
     ..a(1, 'id', GeneratedMessage.OS)
     ..a(2, 'headLabel', GeneratedMessage.OS)
     ..a(3, 'tailLabel', GeneratedMessage.OS)
-    ..e(4, 'dir', GeneratedMessage.OE, EdgeSpec_Dir.BOTH, (var v) => EdgeSpec_Dir.valueOf(v))
-    ..e(5, 'arrowHead', GeneratedMessage.OE, EdgeSpec_ArrowShape.BOX, (var v) => EdgeSpec_ArrowShape.valueOf(v))
-    ..e(6, 'arrowTail', GeneratedMessage.OE, EdgeSpec_ArrowShape.BOX, (var v) => EdgeSpec_ArrowShape.valueOf(v))
+    ..e(4, 'dir', GeneratedMessage.OE, EdgeAttributes_Dir.BOTH, (var v) => EdgeAttributes_Dir.valueOf(v))
+    ..e(5, 'arrowHead', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
+    ..e(6, 'arrowTail', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
     ..hasRequiredFields = false
   ;
 
-  EdgeSpec() : super();
-  EdgeSpec.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  EdgeSpec.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  EdgeSpec clone() => new EdgeSpec()..mergeFromMessage(this);
+  EdgeAttributes() : super();
+  EdgeAttributes.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  EdgeAttributes.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  EdgeAttributes clone() => new EdgeAttributes()..mergeFromMessage(this);
   BuilderInfo get info_ => _i;
-  static EdgeSpec create() => new EdgeSpec();
-  static PbList<EdgeSpec> createRepeated() => new PbList<EdgeSpec>();
+  static EdgeAttributes create() => new EdgeAttributes();
+  static PbList<EdgeAttributes> createRepeated() => new PbList<EdgeAttributes>();
 
   String get id => getField(1);
   void set id(String v) { setField(1, v); }
@@ -727,32 +727,32 @@ class EdgeSpec extends GeneratedMessage {
   bool hasTailLabel() => hasField(3);
   void clearTailLabel() => clearField(3);
 
-  EdgeSpec_Dir get dir => getField(4);
-  void set dir(EdgeSpec_Dir v) { setField(4, v); }
+  EdgeAttributes_Dir get dir => getField(4);
+  void set dir(EdgeAttributes_Dir v) { setField(4, v); }
   bool hasDir() => hasField(4);
   void clearDir() => clearField(4);
 
-  EdgeSpec_ArrowShape get arrowHead => getField(5);
-  void set arrowHead(EdgeSpec_ArrowShape v) { setField(5, v); }
+  EdgeAttributes_ArrowShape get arrowHead => getField(5);
+  void set arrowHead(EdgeAttributes_ArrowShape v) { setField(5, v); }
   bool hasArrowHead() => hasField(5);
   void clearArrowHead() => clearField(5);
 
-  EdgeSpec_ArrowShape get arrowTail => getField(6);
-  void set arrowTail(EdgeSpec_ArrowShape v) { setField(6, v); }
+  EdgeAttributes_ArrowShape get arrowTail => getField(6);
+  void set arrowTail(EdgeAttributes_ArrowShape v) { setField(6, v); }
   bool hasArrowTail() => hasField(6);
   void clearArrowTail() => clearField(6);
 }
 
-class GraphSpec_Style extends ProtobufEnum {
-  static const GraphSpec_Style SOLID = const GraphSpec_Style._(1, 'SOLID');
-  static const GraphSpec_Style DASHED = const GraphSpec_Style._(2, 'DASHED');
-  static const GraphSpec_Style DOTTED = const GraphSpec_Style._(3, 'DOTTED');
-  static const GraphSpec_Style BOLD = const GraphSpec_Style._(4, 'BOLD');
-  static const GraphSpec_Style ROUNDED = const GraphSpec_Style._(5, 'ROUNDED');
-  static const GraphSpec_Style FILLED = const GraphSpec_Style._(6, 'FILLED');
-  static const GraphSpec_Style STRIPED = const GraphSpec_Style._(7, 'STRIPED');
+class GraphAttributes_Style extends ProtobufEnum {
+  static const GraphAttributes_Style SOLID = const GraphAttributes_Style._(1, 'SOLID');
+  static const GraphAttributes_Style DASHED = const GraphAttributes_Style._(2, 'DASHED');
+  static const GraphAttributes_Style DOTTED = const GraphAttributes_Style._(3, 'DOTTED');
+  static const GraphAttributes_Style BOLD = const GraphAttributes_Style._(4, 'BOLD');
+  static const GraphAttributes_Style ROUNDED = const GraphAttributes_Style._(5, 'ROUNDED');
+  static const GraphAttributes_Style FILLED = const GraphAttributes_Style._(6, 'FILLED');
+  static const GraphAttributes_Style STRIPED = const GraphAttributes_Style._(7, 'STRIPED');
 
-  static const List<GraphSpec_Style> values = const <GraphSpec_Style> [
+  static const List<GraphAttributes_Style> values = const <GraphAttributes_Style> [
     SOLID,
     DASHED,
     DOTTED,
@@ -762,46 +762,46 @@ class GraphSpec_Style extends ProtobufEnum {
     STRIPED,
   ];
 
-  static final Map<int, GraphSpec_Style> _byValue = ProtobufEnum.initByValue(values);
-  static GraphSpec_Style valueOf(int value) => _byValue[value];
+  static final Map<int, GraphAttributes_Style> _byValue = ProtobufEnum.initByValue(values);
+  static GraphAttributes_Style valueOf(int value) => _byValue[value];
 
-  const GraphSpec_Style._(int v, String n) : super(v, n);
+  const GraphAttributes_Style._(int v, String n) : super(v, n);
 }
 
-class GraphSpec_RankDir extends ProtobufEnum {
-  static const GraphSpec_RankDir TB = const GraphSpec_RankDir._(1, 'TB');
-  static const GraphSpec_RankDir LR = const GraphSpec_RankDir._(2, 'LR');
+class GraphAttributes_RankDir extends ProtobufEnum {
+  static const GraphAttributes_RankDir TB = const GraphAttributes_RankDir._(1, 'TB');
+  static const GraphAttributes_RankDir LR = const GraphAttributes_RankDir._(2, 'LR');
 
-  static const List<GraphSpec_RankDir> values = const <GraphSpec_RankDir> [
+  static const List<GraphAttributes_RankDir> values = const <GraphAttributes_RankDir> [
     TB,
     LR,
   ];
 
-  static final Map<int, GraphSpec_RankDir> _byValue = ProtobufEnum.initByValue(values);
-  static GraphSpec_RankDir valueOf(int value) => _byValue[value];
+  static final Map<int, GraphAttributes_RankDir> _byValue = ProtobufEnum.initByValue(values);
+  static GraphAttributes_RankDir valueOf(int value) => _byValue[value];
 
-  const GraphSpec_RankDir._(int v, String n) : super(v, n);
+  const GraphAttributes_RankDir._(int v, String n) : super(v, n);
 }
 
-class GraphSpec extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('GraphSpec')
+class GraphAttributes extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('GraphAttributes')
     ..a(1, 'label', GeneratedMessage.OS)
     ..e(2, 'fontName', GeneratedMessage.OE, Font.AVANTGARDE_BOOK, (var v) => Font.valueOf(v))
     ..a(3, 'fontSize', GeneratedMessage.OU3)
     ..e(4, 'bgColor', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
     ..e(5, 'color', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
-    ..e(6, 'style', GeneratedMessage.OE, GraphSpec_Style.SOLID, (var v) => GraphSpec_Style.valueOf(v))
-    ..e(7, 'rankDir', GeneratedMessage.OE, GraphSpec_RankDir.TB, (var v) => GraphSpec_RankDir.valueOf(v))
+    ..e(6, 'style', GeneratedMessage.OE, GraphAttributes_Style.SOLID, (var v) => GraphAttributes_Style.valueOf(v))
+    ..e(7, 'rankDir', GeneratedMessage.OE, GraphAttributes_RankDir.TB, (var v) => GraphAttributes_RankDir.valueOf(v))
     ..hasRequiredFields = false
   ;
 
-  GraphSpec() : super();
-  GraphSpec.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  GraphSpec.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  GraphSpec clone() => new GraphSpec()..mergeFromMessage(this);
+  GraphAttributes() : super();
+  GraphAttributes.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  GraphAttributes.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  GraphAttributes clone() => new GraphAttributes()..mergeFromMessage(this);
   BuilderInfo get info_ => _i;
-  static GraphSpec create() => new GraphSpec();
-  static PbList<GraphSpec> createRepeated() => new PbList<GraphSpec>();
+  static GraphAttributes create() => new GraphAttributes();
+  static PbList<GraphAttributes> createRepeated() => new PbList<GraphAttributes>();
 
   String get label => getField(1);
   void set label(String v) { setField(1, v); }
@@ -828,13 +828,13 @@ class GraphSpec extends GeneratedMessage {
   bool hasColor() => hasField(5);
   void clearColor() => clearField(5);
 
-  GraphSpec_Style get style => getField(6);
-  void set style(GraphSpec_Style v) { setField(6, v); }
+  GraphAttributes_Style get style => getField(6);
+  void set style(GraphAttributes_Style v) { setField(6, v); }
   bool hasStyle() => hasField(6);
   void clearStyle() => clearField(6);
 
-  GraphSpec_RankDir get rankDir => getField(7);
-  void set rankDir(GraphSpec_RankDir v) { setField(7, v); }
+  GraphAttributes_RankDir get rankDir => getField(7);
+  void set rankDir(GraphAttributes_RankDir v) { setField(7, v); }
   bool hasRankDir() => hasField(7);
   void clearRankDir() => clearField(7);
 }
