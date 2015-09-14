@@ -276,6 +276,11 @@ class Graph {
     var /*v, w, name, value,*/
         valueSpecified = value != undefined;
 
+    // It didn't exist, so we need to create it, before stringifying them.
+    // First ensure the nodes exist.
+    setNode(v);
+    setNode(w);
+
     v = v.toString();
     w = w.toString();
     if (name != null) {
@@ -293,11 +298,6 @@ class Graph {
     if (name != null && !_isMultigraph) {
       throw new GraphException("Cannot set a named edge when isMultigraph = false");
     }
-
-    // It didn't exist, so we need to create it.
-    // First ensure the nodes exist.
-    setNode(v);
-    setNode(w);
 
     _edgeLabels[e] = valueSpecified ? value : _defaultEdgeLabelFn(v, w, name);
 
