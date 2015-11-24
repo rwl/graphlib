@@ -1,9 +1,8 @@
 ///
 //  Generated code. Do not modify.
 ///
-library graphlib.dot;
+library graphlib.dot_attr;
 
-import 'package:fixnum/fixnum.dart';
 import 'package:protobuf/protobuf.dart';
 
 class Font extends ProtobufEnum {
@@ -83,6 +82,9 @@ class Font extends ProtobufEnum {
 
   static final Map<int, Font> _byValue = ProtobufEnum.initByValue(values);
   static Font valueOf(int value) => _byValue[value];
+  static void $checkItem(Font v) {
+    if (v is !Font) checkItemFailed(v, 'Font');
+  }
 
   const Font._(int v, String n) : super(v, n);
 }
@@ -388,6 +390,9 @@ class Color extends ProtobufEnum {
 
   static final Map<int, Color> _byValue = ProtobufEnum.initByValue(values);
   static Color valueOf(int value) => _byValue[value];
+  static void $checkItem(Color v) {
+    if (v is !Color) checkItemFailed(v, 'Color');
+  }
 
   const Color._(int v, String n) : super(v, n);
 }
@@ -463,6 +468,9 @@ class NodeAttributes_Shape extends ProtobufEnum {
 
   static final Map<int, NodeAttributes_Shape> _byValue = ProtobufEnum.initByValue(values);
   static NodeAttributes_Shape valueOf(int value) => _byValue[value];
+  static void $checkItem(NodeAttributes_Shape v) {
+    if (v is !NodeAttributes_Shape) checkItemFailed(v, 'NodeAttributes_Shape');
+  }
 
   const NodeAttributes_Shape._(int v, String n) : super(v, n);
 }
@@ -492,23 +500,26 @@ class NodeAttributes_Style extends ProtobufEnum {
 
   static final Map<int, NodeAttributes_Style> _byValue = ProtobufEnum.initByValue(values);
   static NodeAttributes_Style valueOf(int value) => _byValue[value];
+  static void $checkItem(NodeAttributes_Style v) {
+    if (v is !NodeAttributes_Style) checkItemFailed(v, 'NodeAttributes_Style');
+  }
 
   const NodeAttributes_Style._(int v, String n) : super(v, n);
 }
 
 class NodeAttributes extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('NodeAttributes')
-    ..a(1, 'id', GeneratedMessage.OS)
-    ..a(2, 'label', GeneratedMessage.OS)
-    ..e(3, 'fontName', GeneratedMessage.OE, Font.AVANTGARDE_BOOK, (var v) => Font.valueOf(v))
-    ..a(4, 'fontSize', GeneratedMessage.OU3)
-    ..e(5, 'style', GeneratedMessage.OE, NodeAttributes_Style.SOLID, (var v) => NodeAttributes_Style.valueOf(v))
-    ..e(6, 'fillColor', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
-    ..e(7, 'color', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
-    ..e(8, 'shape', GeneratedMessage.OE, NodeAttributes_Shape.BOX, (var v) => NodeAttributes_Shape.valueOf(v))
-    ..a(9, 'width', GeneratedMessage.OD)
-    ..a(10, 'height', GeneratedMessage.OD)
-    ..a(11, 'penWidth', GeneratedMessage.OD)
+    ..a(1, 'id', PbFieldType.OS)
+    ..a(2, 'label', PbFieldType.OS)
+    ..e(3, 'fontName', PbFieldType.OE, Font.AVANTGARDE_BOOK, Font.valueOf)
+    ..a(4, 'fontSize', PbFieldType.OU3)
+    ..e(5, 'style', PbFieldType.OE, NodeAttributes_Style.SOLID, NodeAttributes_Style.valueOf)
+    ..e(6, 'fillColor', PbFieldType.OE, Color.ALICE_BLUE, Color.valueOf)
+    ..e(7, 'color', PbFieldType.OE, Color.ALICE_BLUE, Color.valueOf)
+    ..e(8, 'shape', PbFieldType.OE, NodeAttributes_Shape.BOX, NodeAttributes_Shape.valueOf)
+    ..a(9, 'width', PbFieldType.OD)
+    ..a(10, 'height', PbFieldType.OD)
+    ..a(11, 'penWidth', PbFieldType.OD)
     ..hasRequiredFields = false
   ;
 
@@ -519,62 +530,72 @@ class NodeAttributes extends GeneratedMessage {
   BuilderInfo get info_ => _i;
   static NodeAttributes create() => new NodeAttributes();
   static PbList<NodeAttributes> createRepeated() => new PbList<NodeAttributes>();
+  static NodeAttributes getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyNodeAttributes();
+    return _defaultInstance;
+  }
+  static NodeAttributes _defaultInstance;
+  static void $checkItem(NodeAttributes v) {
+    if (v is !NodeAttributes) checkItemFailed(v, 'NodeAttributes');
+  }
 
-  String get id => getField(1);
-  void set id(String v) { setField(1, v); }
-  bool hasId() => hasField(1);
+  String get id => $_get(0, 1, '');
+  void set id(String v) { $_setString(0, 1, v); }
+  bool hasId() => $_has(0, 1);
   void clearId() => clearField(1);
 
-  String get label => getField(2);
-  void set label(String v) { setField(2, v); }
-  bool hasLabel() => hasField(2);
+  String get label => $_get(1, 2, '');
+  void set label(String v) { $_setString(1, 2, v); }
+  bool hasLabel() => $_has(1, 2);
   void clearLabel() => clearField(2);
 
-  Font get fontName => getField(3);
+  Font get fontName => $_get(2, 3, null);
   void set fontName(Font v) { setField(3, v); }
-  bool hasFontName() => hasField(3);
+  bool hasFontName() => $_has(2, 3);
   void clearFontName() => clearField(3);
 
-  int get fontSize => getField(4);
-  void set fontSize(int v) { setField(4, v); }
-  bool hasFontSize() => hasField(4);
+  int get fontSize => $_get(3, 4, 0);
+  void set fontSize(int v) { $_setUnsignedInt32(3, 4, v); }
+  bool hasFontSize() => $_has(3, 4);
   void clearFontSize() => clearField(4);
 
-  NodeAttributes_Style get style => getField(5);
+  NodeAttributes_Style get style => $_get(4, 5, null);
   void set style(NodeAttributes_Style v) { setField(5, v); }
-  bool hasStyle() => hasField(5);
+  bool hasStyle() => $_has(4, 5);
   void clearStyle() => clearField(5);
 
-  Color get fillColor => getField(6);
+  Color get fillColor => $_get(5, 6, null);
   void set fillColor(Color v) { setField(6, v); }
-  bool hasFillColor() => hasField(6);
+  bool hasFillColor() => $_has(5, 6);
   void clearFillColor() => clearField(6);
 
-  Color get color => getField(7);
+  Color get color => $_get(6, 7, null);
   void set color(Color v) { setField(7, v); }
-  bool hasColor() => hasField(7);
+  bool hasColor() => $_has(6, 7);
   void clearColor() => clearField(7);
 
-  NodeAttributes_Shape get shape => getField(8);
+  NodeAttributes_Shape get shape => $_get(7, 8, null);
   void set shape(NodeAttributes_Shape v) { setField(8, v); }
-  bool hasShape() => hasField(8);
+  bool hasShape() => $_has(7, 8);
   void clearShape() => clearField(8);
 
-  double get width => getField(9);
-  void set width(double v) { setField(9, v); }
-  bool hasWidth() => hasField(9);
+  double get width => $_get(8, 9, null);
+  void set width(double v) { $_setDouble(8, 9, v); }
+  bool hasWidth() => $_has(8, 9);
   void clearWidth() => clearField(9);
 
-  double get height => getField(10);
-  void set height(double v) { setField(10, v); }
-  bool hasHeight() => hasField(10);
+  double get height => $_get(9, 10, null);
+  void set height(double v) { $_setDouble(9, 10, v); }
+  bool hasHeight() => $_has(9, 10);
   void clearHeight() => clearField(10);
 
-  double get penWidth => getField(11);
-  void set penWidth(double v) { setField(11, v); }
-  bool hasPenWidth() => hasField(11);
+  double get penWidth => $_get(10, 11, null);
+  void set penWidth(double v) { $_setDouble(10, 11, v); }
+  bool hasPenWidth() => $_has(10, 11);
   void clearPenWidth() => clearField(11);
 }
+
+class _ReadonlyNodeAttributes extends NodeAttributes with ReadonlyMessageMixin {}
 
 class EdgeAttributes_Style extends ProtobufEnum {
   static const EdgeAttributes_Style SOLID = const EdgeAttributes_Style._(1, 'SOLID');
@@ -591,6 +612,9 @@ class EdgeAttributes_Style extends ProtobufEnum {
 
   static final Map<int, EdgeAttributes_Style> _byValue = ProtobufEnum.initByValue(values);
   static EdgeAttributes_Style valueOf(int value) => _byValue[value];
+  static void $checkItem(EdgeAttributes_Style v) {
+    if (v is !EdgeAttributes_Style) checkItemFailed(v, 'EdgeAttributes_Style');
+  }
 
   const EdgeAttributes_Style._(int v, String n) : super(v, n);
 }
@@ -608,6 +632,9 @@ class EdgeAttributes_Dir extends ProtobufEnum {
 
   static final Map<int, EdgeAttributes_Dir> _byValue = ProtobufEnum.initByValue(values);
   static EdgeAttributes_Dir valueOf(int value) => _byValue[value];
+  static void $checkItem(EdgeAttributes_Dir v) {
+    if (v is !EdgeAttributes_Dir) checkItemFailed(v, 'EdgeAttributes_Dir');
+  }
 
   const EdgeAttributes_Dir._(int v, String n) : super(v, n);
 }
@@ -651,16 +678,19 @@ class EdgeAttributes_ArrowShape extends ProtobufEnum {
 
   static final Map<int, EdgeAttributes_ArrowShape> _byValue = ProtobufEnum.initByValue(values);
   static EdgeAttributes_ArrowShape valueOf(int value) => _byValue[value];
+  static void $checkItem(EdgeAttributes_ArrowShape v) {
+    if (v is !EdgeAttributes_ArrowShape) checkItemFailed(v, 'EdgeAttributes_ArrowShape');
+  }
 
   const EdgeAttributes_ArrowShape._(int v, String n) : super(v, n);
 }
 
 class EdgeAttributes_CompoundArrowShape extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('EdgeAttributes_CompoundArrowShape')
-    ..e(1, 'shape1', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
-    ..e(2, 'shape2', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
-    ..e(3, 'shape3', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
-    ..e(4, 'shape4', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
+    ..e(1, 'shape1', PbFieldType.OE, EdgeAttributes_ArrowShape.BOX, EdgeAttributes_ArrowShape.valueOf)
+    ..e(2, 'shape2', PbFieldType.OE, EdgeAttributes_ArrowShape.BOX, EdgeAttributes_ArrowShape.valueOf)
+    ..e(3, 'shape3', PbFieldType.OE, EdgeAttributes_ArrowShape.BOX, EdgeAttributes_ArrowShape.valueOf)
+    ..e(4, 'shape4', PbFieldType.OE, EdgeAttributes_ArrowShape.BOX, EdgeAttributes_ArrowShape.valueOf)
     ..hasRequiredFields = false
   ;
 
@@ -671,36 +701,46 @@ class EdgeAttributes_CompoundArrowShape extends GeneratedMessage {
   BuilderInfo get info_ => _i;
   static EdgeAttributes_CompoundArrowShape create() => new EdgeAttributes_CompoundArrowShape();
   static PbList<EdgeAttributes_CompoundArrowShape> createRepeated() => new PbList<EdgeAttributes_CompoundArrowShape>();
+  static EdgeAttributes_CompoundArrowShape getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyEdgeAttributes_CompoundArrowShape();
+    return _defaultInstance;
+  }
+  static EdgeAttributes_CompoundArrowShape _defaultInstance;
+  static void $checkItem(EdgeAttributes_CompoundArrowShape v) {
+    if (v is !EdgeAttributes_CompoundArrowShape) checkItemFailed(v, 'EdgeAttributes_CompoundArrowShape');
+  }
 
-  EdgeAttributes_ArrowShape get shape1 => getField(1);
+  EdgeAttributes_ArrowShape get shape1 => $_get(0, 1, null);
   void set shape1(EdgeAttributes_ArrowShape v) { setField(1, v); }
-  bool hasShape1() => hasField(1);
+  bool hasShape1() => $_has(0, 1);
   void clearShape1() => clearField(1);
 
-  EdgeAttributes_ArrowShape get shape2 => getField(2);
+  EdgeAttributes_ArrowShape get shape2 => $_get(1, 2, null);
   void set shape2(EdgeAttributes_ArrowShape v) { setField(2, v); }
-  bool hasShape2() => hasField(2);
+  bool hasShape2() => $_has(1, 2);
   void clearShape2() => clearField(2);
 
-  EdgeAttributes_ArrowShape get shape3 => getField(3);
+  EdgeAttributes_ArrowShape get shape3 => $_get(2, 3, null);
   void set shape3(EdgeAttributes_ArrowShape v) { setField(3, v); }
-  bool hasShape3() => hasField(3);
+  bool hasShape3() => $_has(2, 3);
   void clearShape3() => clearField(3);
 
-  EdgeAttributes_ArrowShape get shape4 => getField(4);
+  EdgeAttributes_ArrowShape get shape4 => $_get(3, 4, null);
   void set shape4(EdgeAttributes_ArrowShape v) { setField(4, v); }
-  bool hasShape4() => hasField(4);
+  bool hasShape4() => $_has(3, 4);
   void clearShape4() => clearField(4);
 }
 
+class _ReadonlyEdgeAttributes_CompoundArrowShape extends EdgeAttributes_CompoundArrowShape with ReadonlyMessageMixin {}
+
 class EdgeAttributes extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('EdgeAttributes')
-    ..a(1, 'id', GeneratedMessage.OS)
-    ..a(2, 'headLabel', GeneratedMessage.OS)
-    ..a(3, 'tailLabel', GeneratedMessage.OS)
-    ..e(4, 'dir', GeneratedMessage.OE, EdgeAttributes_Dir.BOTH, (var v) => EdgeAttributes_Dir.valueOf(v))
-    ..e(5, 'arrowHead', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
-    ..e(6, 'arrowTail', GeneratedMessage.OE, EdgeAttributes_ArrowShape.BOX, (var v) => EdgeAttributes_ArrowShape.valueOf(v))
+    ..a(1, 'id', PbFieldType.OS)
+    ..a(2, 'headLabel', PbFieldType.OS)
+    ..a(3, 'tailLabel', PbFieldType.OS)
+    ..e(4, 'dir', PbFieldType.OE, EdgeAttributes_Dir.BOTH, EdgeAttributes_Dir.valueOf)
+    ..e(5, 'arrowHead', PbFieldType.OE, EdgeAttributes_ArrowShape.BOX, EdgeAttributes_ArrowShape.valueOf)
+    ..e(6, 'arrowTail', PbFieldType.OE, EdgeAttributes_ArrowShape.BOX, EdgeAttributes_ArrowShape.valueOf)
     ..hasRequiredFields = false
   ;
 
@@ -711,37 +751,47 @@ class EdgeAttributes extends GeneratedMessage {
   BuilderInfo get info_ => _i;
   static EdgeAttributes create() => new EdgeAttributes();
   static PbList<EdgeAttributes> createRepeated() => new PbList<EdgeAttributes>();
+  static EdgeAttributes getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyEdgeAttributes();
+    return _defaultInstance;
+  }
+  static EdgeAttributes _defaultInstance;
+  static void $checkItem(EdgeAttributes v) {
+    if (v is !EdgeAttributes) checkItemFailed(v, 'EdgeAttributes');
+  }
 
-  String get id => getField(1);
-  void set id(String v) { setField(1, v); }
-  bool hasId() => hasField(1);
+  String get id => $_get(0, 1, '');
+  void set id(String v) { $_setString(0, 1, v); }
+  bool hasId() => $_has(0, 1);
   void clearId() => clearField(1);
 
-  String get headLabel => getField(2);
-  void set headLabel(String v) { setField(2, v); }
-  bool hasHeadLabel() => hasField(2);
+  String get headLabel => $_get(1, 2, '');
+  void set headLabel(String v) { $_setString(1, 2, v); }
+  bool hasHeadLabel() => $_has(1, 2);
   void clearHeadLabel() => clearField(2);
 
-  String get tailLabel => getField(3);
-  void set tailLabel(String v) { setField(3, v); }
-  bool hasTailLabel() => hasField(3);
+  String get tailLabel => $_get(2, 3, '');
+  void set tailLabel(String v) { $_setString(2, 3, v); }
+  bool hasTailLabel() => $_has(2, 3);
   void clearTailLabel() => clearField(3);
 
-  EdgeAttributes_Dir get dir => getField(4);
+  EdgeAttributes_Dir get dir => $_get(3, 4, null);
   void set dir(EdgeAttributes_Dir v) { setField(4, v); }
-  bool hasDir() => hasField(4);
+  bool hasDir() => $_has(3, 4);
   void clearDir() => clearField(4);
 
-  EdgeAttributes_ArrowShape get arrowHead => getField(5);
+  EdgeAttributes_ArrowShape get arrowHead => $_get(4, 5, null);
   void set arrowHead(EdgeAttributes_ArrowShape v) { setField(5, v); }
-  bool hasArrowHead() => hasField(5);
+  bool hasArrowHead() => $_has(4, 5);
   void clearArrowHead() => clearField(5);
 
-  EdgeAttributes_ArrowShape get arrowTail => getField(6);
+  EdgeAttributes_ArrowShape get arrowTail => $_get(5, 6, null);
   void set arrowTail(EdgeAttributes_ArrowShape v) { setField(6, v); }
-  bool hasArrowTail() => hasField(6);
+  bool hasArrowTail() => $_has(5, 6);
   void clearArrowTail() => clearField(6);
 }
+
+class _ReadonlyEdgeAttributes extends EdgeAttributes with ReadonlyMessageMixin {}
 
 class GraphAttributes_Style extends ProtobufEnum {
   static const GraphAttributes_Style SOLID = const GraphAttributes_Style._(1, 'SOLID');
@@ -764,6 +814,9 @@ class GraphAttributes_Style extends ProtobufEnum {
 
   static final Map<int, GraphAttributes_Style> _byValue = ProtobufEnum.initByValue(values);
   static GraphAttributes_Style valueOf(int value) => _byValue[value];
+  static void $checkItem(GraphAttributes_Style v) {
+    if (v is !GraphAttributes_Style) checkItemFailed(v, 'GraphAttributes_Style');
+  }
 
   const GraphAttributes_Style._(int v, String n) : super(v, n);
 }
@@ -779,19 +832,22 @@ class GraphAttributes_RankDir extends ProtobufEnum {
 
   static final Map<int, GraphAttributes_RankDir> _byValue = ProtobufEnum.initByValue(values);
   static GraphAttributes_RankDir valueOf(int value) => _byValue[value];
+  static void $checkItem(GraphAttributes_RankDir v) {
+    if (v is !GraphAttributes_RankDir) checkItemFailed(v, 'GraphAttributes_RankDir');
+  }
 
   const GraphAttributes_RankDir._(int v, String n) : super(v, n);
 }
 
 class GraphAttributes extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('GraphAttributes')
-    ..a(1, 'label', GeneratedMessage.OS)
-    ..e(2, 'fontName', GeneratedMessage.OE, Font.AVANTGARDE_BOOK, (var v) => Font.valueOf(v))
-    ..a(3, 'fontSize', GeneratedMessage.OU3)
-    ..e(4, 'bgColor', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
-    ..e(5, 'color', GeneratedMessage.OE, Color.ALICE_BLUE, (var v) => Color.valueOf(v))
-    ..e(6, 'style', GeneratedMessage.OE, GraphAttributes_Style.SOLID, (var v) => GraphAttributes_Style.valueOf(v))
-    ..e(7, 'rankDir', GeneratedMessage.OE, GraphAttributes_RankDir.TB, (var v) => GraphAttributes_RankDir.valueOf(v))
+    ..a(1, 'label', PbFieldType.OS)
+    ..e(2, 'fontName', PbFieldType.OE, Font.AVANTGARDE_BOOK, Font.valueOf)
+    ..a(3, 'fontSize', PbFieldType.OU3)
+    ..e(4, 'bgColor', PbFieldType.OE, Color.ALICE_BLUE, Color.valueOf)
+    ..e(5, 'color', PbFieldType.OE, Color.ALICE_BLUE, Color.valueOf)
+    ..e(6, 'style', PbFieldType.OE, GraphAttributes_Style.SOLID, GraphAttributes_Style.valueOf)
+    ..e(7, 'rankDir', PbFieldType.OE, GraphAttributes_RankDir.TB, GraphAttributes_RankDir.valueOf)
     ..hasRequiredFields = false
   ;
 
@@ -802,40 +858,415 @@ class GraphAttributes extends GeneratedMessage {
   BuilderInfo get info_ => _i;
   static GraphAttributes create() => new GraphAttributes();
   static PbList<GraphAttributes> createRepeated() => new PbList<GraphAttributes>();
+  static GraphAttributes getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyGraphAttributes();
+    return _defaultInstance;
+  }
+  static GraphAttributes _defaultInstance;
+  static void $checkItem(GraphAttributes v) {
+    if (v is !GraphAttributes) checkItemFailed(v, 'GraphAttributes');
+  }
 
-  String get label => getField(1);
-  void set label(String v) { setField(1, v); }
-  bool hasLabel() => hasField(1);
+  String get label => $_get(0, 1, '');
+  void set label(String v) { $_setString(0, 1, v); }
+  bool hasLabel() => $_has(0, 1);
   void clearLabel() => clearField(1);
 
-  Font get fontName => getField(2);
+  Font get fontName => $_get(1, 2, null);
   void set fontName(Font v) { setField(2, v); }
-  bool hasFontName() => hasField(2);
+  bool hasFontName() => $_has(1, 2);
   void clearFontName() => clearField(2);
 
-  int get fontSize => getField(3);
-  void set fontSize(int v) { setField(3, v); }
-  bool hasFontSize() => hasField(3);
+  int get fontSize => $_get(2, 3, 0);
+  void set fontSize(int v) { $_setUnsignedInt32(2, 3, v); }
+  bool hasFontSize() => $_has(2, 3);
   void clearFontSize() => clearField(3);
 
-  Color get bgColor => getField(4);
+  Color get bgColor => $_get(3, 4, null);
   void set bgColor(Color v) { setField(4, v); }
-  bool hasBgColor() => hasField(4);
+  bool hasBgColor() => $_has(3, 4);
   void clearBgColor() => clearField(4);
 
-  Color get color => getField(5);
+  Color get color => $_get(4, 5, null);
   void set color(Color v) { setField(5, v); }
-  bool hasColor() => hasField(5);
+  bool hasColor() => $_has(4, 5);
   void clearColor() => clearField(5);
 
-  GraphAttributes_Style get style => getField(6);
+  GraphAttributes_Style get style => $_get(5, 6, null);
   void set style(GraphAttributes_Style v) { setField(6, v); }
-  bool hasStyle() => hasField(6);
+  bool hasStyle() => $_has(5, 6);
   void clearStyle() => clearField(6);
 
-  GraphAttributes_RankDir get rankDir => getField(7);
+  GraphAttributes_RankDir get rankDir => $_get(6, 7, null);
   void set rankDir(GraphAttributes_RankDir v) { setField(7, v); }
-  bool hasRankDir() => hasField(7);
+  bool hasRankDir() => $_has(6, 7);
   void clearRankDir() => clearField(7);
 }
+
+class _ReadonlyGraphAttributes extends GraphAttributes with ReadonlyMessageMixin {}
+
+const Font$json = const {
+  '1': 'Font',
+  '2': const [
+    const {'1': 'AVANTGARDE_BOOK', '2': 1},
+    const {'1': 'AVANTGARDE_BOOK_OBLIQUE', '2': 2},
+    const {'1': 'AVANTGARDE_DEMI', '2': 3},
+    const {'1': 'AVANTGARDE_DEMI_OBLIQUE', '2': 4},
+    const {'1': 'BOOKMAN_DEMI', '2': 5},
+    const {'1': 'BOOKMAN_DEMI_ITALIC', '2': 6},
+    const {'1': 'BOOKMAN_LIGHT', '2': 7},
+    const {'1': 'BOOKMAN_LIGHT_ITALIC', '2': 8},
+    const {'1': 'COURIER', '2': 9},
+    const {'1': 'COURIER_BOLD', '2': 10},
+    const {'1': 'COURIER_BOLD_OBLIQUE', '2': 11},
+    const {'1': 'COURIER_OBLIQUE', '2': 12},
+    const {'1': 'HELVETICA', '2': 13},
+    const {'1': 'HELVETICA_BOLD', '2': 14},
+    const {'1': 'HELVETICA_BOLD_OBLIQUE', '2': 15},
+    const {'1': 'HELVETICA_NARROW', '2': 16},
+    const {'1': 'HELVETICA_NARROW_BOLD', '2': 17},
+    const {'1': 'HELVETICA_NARROW_BOLD_OBLIQUE', '2': 18},
+    const {'1': 'HELVETICA_NARROW_OBLIQUE', '2': 19},
+    const {'1': 'HELVETICA_OBLIQUE', '2': 20},
+    const {'1': 'NEWCENTURYSCHLBK_BOLD', '2': 21},
+    const {'1': 'NEWCENTURYSCHLBK_BOLD_ITALIC', '2': 22},
+    const {'1': 'NEWCENTURYSCHLBK_ITALIC', '2': 23},
+    const {'1': 'NEWCENTURYSCHLBK_ROMAN', '2': 24},
+    const {'1': 'PALATINO_BOLD', '2': 25},
+    const {'1': 'PALATINO_BOLD_ITALIC', '2': 26},
+    const {'1': 'PALATINO_ITALIC', '2': 27},
+    const {'1': 'PALATINO_ROMAN', '2': 28},
+    const {'1': 'SYMBOL', '2': 29},
+    const {'1': 'TIMES_BOLD', '2': 30},
+    const {'1': 'TIMES_BOLD_ITALIC', '2': 31},
+    const {'1': 'TIMES_ITALIC', '2': 32},
+    const {'1': 'TIMES_ROMAN', '2': 33},
+    const {'1': 'ZAPFCHANCERY_MEDIUM_ITALIC', '2': 34},
+    const {'1': 'ZAPFDINGBATS', '2': 35},
+  ],
+};
+
+const Color$json = const {
+  '1': 'Color',
+  '2': const [
+    const {'1': 'ALICE_BLUE', '2': 1},
+    const {'1': 'ANTIQUE_WHITE', '2': 2},
+    const {'1': 'AQUA', '2': 3},
+    const {'1': 'AQUAMARINE', '2': 4},
+    const {'1': 'AZURE', '2': 5},
+    const {'1': 'BEIGE', '2': 6},
+    const {'1': 'BISQUE', '2': 7},
+    const {'1': 'BLACK', '2': 8},
+    const {'1': 'BLANCHED_ALMOND', '2': 9},
+    const {'1': 'BLUE', '2': 10},
+    const {'1': 'BLUE_VIOLET', '2': 11},
+    const {'1': 'BROWN', '2': 12},
+    const {'1': 'BURLYWOOD', '2': 13},
+    const {'1': 'CADET_BLUE', '2': 14},
+    const {'1': 'CHARTREUSE', '2': 15},
+    const {'1': 'CHOCOLATE', '2': 16},
+    const {'1': 'CORAL', '2': 17},
+    const {'1': 'CORNFLOWER_BLUE', '2': 18},
+    const {'1': 'CORNSILK', '2': 19},
+    const {'1': 'CRIMSON', '2': 20},
+    const {'1': 'CYAN', '2': 21},
+    const {'1': 'DARK_BLUE', '2': 22},
+    const {'1': 'DARK_CYAN', '2': 23},
+    const {'1': 'DARK_GOLDENROD', '2': 24},
+    const {'1': 'DARK_GRAY', '2': 25},
+    const {'1': 'DARK_GREEN', '2': 26},
+    const {'1': 'DARK_GREY', '2': 27},
+    const {'1': 'DARK_KHAKI', '2': 28},
+    const {'1': 'DARK_MAGENTA', '2': 29},
+    const {'1': 'DARK_OLIVE_GREEN', '2': 30},
+    const {'1': 'DARK_ORANGE', '2': 31},
+    const {'1': 'DARK_ORCHID', '2': 32},
+    const {'1': 'DARK_RED', '2': 33},
+    const {'1': 'DARK_SALMON', '2': 34},
+    const {'1': 'DARK_SEA_GREEN', '2': 35},
+    const {'1': 'DARK_SLATE_BLUE', '2': 36},
+    const {'1': 'DARK_SLATE_GRAY', '2': 37},
+    const {'1': 'DARK_SLATE_GREY', '2': 38},
+    const {'1': 'DARK_TURQUOISE', '2': 39},
+    const {'1': 'DARK_VIOLET', '2': 40},
+    const {'1': 'DEEP_PINK', '2': 41},
+    const {'1': 'DEEP_SKY_BLUE', '2': 42},
+    const {'1': 'DIM_GRAY', '2': 43},
+    const {'1': 'DIM_GREY', '2': 44},
+    const {'1': 'DODGER_BLUE', '2': 45},
+    const {'1': 'FIREBRICK', '2': 46},
+    const {'1': 'FLORAL_WHITE', '2': 47},
+    const {'1': 'FOREST_GREEN', '2': 48},
+    const {'1': 'FUCHSIA', '2': 49},
+    const {'1': 'GAINSBORO', '2': 50},
+    const {'1': 'GHOST_WHITE', '2': 51},
+    const {'1': 'GOLD', '2': 52},
+    const {'1': 'GOLDENROD', '2': 53},
+    const {'1': 'GRAY', '2': 54},
+    const {'1': 'GREY', '2': 55},
+    const {'1': 'GREEN', '2': 56},
+    const {'1': 'GREEN_YELLOW', '2': 57},
+    const {'1': 'HONEYDEW', '2': 58},
+    const {'1': 'HOT_PINK', '2': 59},
+    const {'1': 'INDIAN_RED', '2': 60},
+    const {'1': 'INDIGO', '2': 61},
+    const {'1': 'IVORY', '2': 62},
+    const {'1': 'KHAKI', '2': 63},
+    const {'1': 'LAVENDER', '2': 64},
+    const {'1': 'LAVENDERBLUSH', '2': 65},
+    const {'1': 'LAWN_GREEN', '2': 66},
+    const {'1': 'LEMON_CHIFFON', '2': 67},
+    const {'1': 'LIGHT_BLUE', '2': 68},
+    const {'1': 'LIGHT_CORAL', '2': 69},
+    const {'1': 'LIGHT_CYAN', '2': 70},
+    const {'1': 'LIGHT_GOLDENRODYELLOW', '2': 71},
+    const {'1': 'LIGHT_GRAY', '2': 72},
+    const {'1': 'LIGHT_GREEN', '2': 73},
+    const {'1': 'LIGHT_GREY', '2': 74},
+    const {'1': 'LIGHT_PINK', '2': 75},
+    const {'1': 'LIGHT_SALMON', '2': 76},
+    const {'1': 'LIGHT_SEA_GREEN', '2': 77},
+    const {'1': 'LIGHT_SKY_BLUE', '2': 78},
+    const {'1': 'LIGHT_SLATE_GRAY', '2': 79},
+    const {'1': 'LIGHT_SLATE_GREY', '2': 80},
+    const {'1': 'LIGHT_STEEL_BLUE', '2': 81},
+    const {'1': 'LIGHT_YELLOW', '2': 82},
+    const {'1': 'LIME', '2': 83},
+    const {'1': 'LIME_GREEN', '2': 84},
+    const {'1': 'LINEN', '2': 85},
+    const {'1': 'MAGENTA', '2': 86},
+    const {'1': 'MAROON', '2': 87},
+    const {'1': 'MEDIUM_AQUAMARINE', '2': 88},
+    const {'1': 'MEDIUM_BLUE', '2': 89},
+    const {'1': 'MEDIUM_ORCHID', '2': 90},
+    const {'1': 'MEDIUM_PURPLE', '2': 91},
+    const {'1': 'MEDIUM_SEA_GREEN', '2': 92},
+    const {'1': 'MEDIUM_SLATE_BLUE', '2': 93},
+    const {'1': 'MEDIUM_SPRING_GREEN', '2': 94},
+    const {'1': 'MEDIUM_TURQUOISE', '2': 95},
+    const {'1': 'MEDIUM_VIOLET_RED', '2': 96},
+    const {'1': 'MIDNIGHT_BLUE', '2': 97},
+    const {'1': 'MINT_CREAM', '2': 98},
+    const {'1': 'MISTY_ROSE', '2': 99},
+    const {'1': 'MOCCASIN', '2': 100},
+    const {'1': 'NAVAJO_WHITE', '2': 101},
+    const {'1': 'NAVY', '2': 102},
+    const {'1': 'OLD_LACE', '2': 103},
+    const {'1': 'OLIVE', '2': 104},
+    const {'1': 'OLIVE_DRAB', '2': 105},
+    const {'1': 'ORANGE', '2': 106},
+    const {'1': 'ORANGE_RED', '2': 107},
+    const {'1': 'ORCHID', '2': 108},
+    const {'1': 'PALE_GOLDENROD', '2': 109},
+    const {'1': 'PALE_GREEN', '2': 110},
+    const {'1': 'PALE_TURQUOISE', '2': 111},
+    const {'1': 'PALE_VIOLET_RED', '2': 112},
+    const {'1': 'PAPAYAWHIP', '2': 113},
+    const {'1': 'PEACHPUFF', '2': 114},
+    const {'1': 'PERU', '2': 115},
+    const {'1': 'PINK', '2': 116},
+    const {'1': 'PLUM', '2': 117},
+    const {'1': 'POWDER_BLUE', '2': 118},
+    const {'1': 'PURPLE', '2': 119},
+    const {'1': 'RED', '2': 120},
+    const {'1': 'ROSY_BROWN', '2': 121},
+    const {'1': 'ROYAL_BLUE', '2': 122},
+    const {'1': 'SADDLE_BROWN', '2': 123},
+    const {'1': 'SALMON', '2': 124},
+    const {'1': 'SANDY_BROWN', '2': 125},
+    const {'1': 'SEA_GREEN', '2': 126},
+    const {'1': 'SEASHELL', '2': 127},
+    const {'1': 'SIENNA', '2': 128},
+    const {'1': 'SILVER', '2': 129},
+    const {'1': 'SKY_BLUE', '2': 130},
+    const {'1': 'SLATE_BLUE', '2': 131},
+    const {'1': 'SLATE_GRAY', '2': 132},
+    const {'1': 'SLATE_GREY', '2': 133},
+    const {'1': 'SNOW', '2': 134},
+    const {'1': 'SPRING_GREEN', '2': 135},
+    const {'1': 'STEEL_BLUE', '2': 136},
+    const {'1': 'TAN', '2': 137},
+    const {'1': 'TEAL', '2': 138},
+    const {'1': 'THISTLE', '2': 139},
+    const {'1': 'TOMATO', '2': 140},
+    const {'1': 'TURQUOISE', '2': 141},
+    const {'1': 'VIOLET', '2': 142},
+    const {'1': 'WHEAT', '2': 143},
+    const {'1': 'WHITE', '2': 144},
+    const {'1': 'WHITE_SMOKE', '2': 145},
+    const {'1': 'YELLOW', '2': 146},
+    const {'1': 'YELLOW_GREEN', '2': 147},
+  ],
+};
+
+const NodeAttributes$json = const {
+  '1': 'NodeAttributes',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 9},
+    const {'1': 'label', '3': 2, '4': 1, '5': 9},
+    const {'1': 'font_name', '3': 3, '4': 1, '5': 14, '6': '.graphlib.dot.Font'},
+    const {'1': 'font_size', '3': 4, '4': 1, '5': 13},
+    const {'1': 'style', '3': 5, '4': 1, '5': 14, '6': '.graphlib.dot.NodeAttributes.Style'},
+    const {'1': 'fill_color', '3': 6, '4': 1, '5': 14, '6': '.graphlib.dot.Color'},
+    const {'1': 'color', '3': 7, '4': 1, '5': 14, '6': '.graphlib.dot.Color'},
+    const {'1': 'shape', '3': 8, '4': 1, '5': 14, '6': '.graphlib.dot.NodeAttributes.Shape'},
+    const {'1': 'width', '3': 9, '4': 1, '5': 1},
+    const {'1': 'height', '3': 10, '4': 1, '5': 1},
+    const {'1': 'pen_width', '3': 11, '4': 1, '5': 1},
+  ],
+  '4': const [NodeAttributes_Shape$json, NodeAttributes_Style$json],
+};
+
+const NodeAttributes_Shape$json = const {
+  '1': 'Shape',
+  '2': const [
+    const {'1': 'BOX', '2': 1},
+    const {'1': 'POLYGON', '2': 2},
+    const {'1': 'ELLIPSE', '2': 3},
+    const {'1': 'OVAL', '2': 4},
+    const {'1': 'CIRCLE', '2': 5},
+    const {'1': 'POINT', '2': 6},
+    const {'1': 'EGG', '2': 7},
+    const {'1': 'TRIANGLE', '2': 8},
+    const {'1': 'PLAIN_TEXT', '2': 9},
+    const {'1': 'PLAIN', '2': 10},
+    const {'1': 'DIAMOND', '2': 11},
+    const {'1': 'TRAPEZIUM', '2': 12},
+    const {'1': 'PARALLELOGRAM', '2': 13},
+    const {'1': 'HOUSE', '2': 14},
+    const {'1': 'PENTAGON', '2': 15},
+    const {'1': 'HEXAGON', '2': 16},
+    const {'1': 'SEPTAGON', '2': 17},
+    const {'1': 'OCTAGON', '2': 18},
+    const {'1': 'DOUBLE_CIRCLE', '2': 19},
+    const {'1': 'DOUBLE_OCTAGON', '2': 20},
+    const {'1': 'TRIPLE_OCTAGON', '2': 21},
+    const {'1': 'INV_TRIANGLE', '2': 22},
+    const {'1': 'INV_TRAPEZIUM', '2': 23},
+    const {'1': 'INV_HOUSE', '2': 24},
+    const {'1': 'MDIAMOND', '2': 25},
+    const {'1': 'MSQUARE', '2': 26},
+    const {'1': 'MCIRCLE', '2': 27},
+    const {'1': 'RECT', '2': 28},
+    const {'1': 'RECTANGLE', '2': 29},
+    const {'1': 'SQUARE', '2': 30},
+    const {'1': 'STAR', '2': 31},
+    const {'1': 'NONE', '2': 32},
+  ],
+};
+
+const NodeAttributes_Style$json = const {
+  '1': 'Style',
+  '2': const [
+    const {'1': 'SOLID', '2': 1},
+    const {'1': 'DASHED', '2': 2},
+    const {'1': 'DOTTED', '2': 3},
+    const {'1': 'BOLD', '2': 4},
+    const {'1': 'ROUNDED', '2': 5},
+    const {'1': 'DIAGONALS', '2': 6},
+    const {'1': 'FILLED', '2': 7},
+    const {'1': 'STRIPED', '2': 8},
+    const {'1': 'WEDGED', '2': 9},
+  ],
+};
+
+const EdgeAttributes$json = const {
+  '1': 'EdgeAttributes',
+  '2': const [
+    const {'1': 'id', '3': 1, '4': 1, '5': 9},
+    const {'1': 'head_label', '3': 2, '4': 1, '5': 9},
+    const {'1': 'tail_label', '3': 3, '4': 1, '5': 9},
+    const {'1': 'dir', '3': 4, '4': 1, '5': 14, '6': '.graphlib.dot.EdgeAttributes.Dir'},
+    const {'1': 'arrow_head', '3': 5, '4': 1, '5': 14, '6': '.graphlib.dot.EdgeAttributes.ArrowShape'},
+    const {'1': 'arrow_tail', '3': 6, '4': 1, '5': 14, '6': '.graphlib.dot.EdgeAttributes.ArrowShape'},
+  ],
+  '3': const [EdgeAttributes_CompoundArrowShape$json],
+  '4': const [EdgeAttributes_Style$json, EdgeAttributes_Dir$json, EdgeAttributes_ArrowShape$json],
+};
+
+const EdgeAttributes_CompoundArrowShape$json = const {
+  '1': 'CompoundArrowShape',
+  '2': const [
+    const {'1': 'shape1', '3': 1, '4': 1, '5': 14, '6': '.graphlib.dot.EdgeAttributes.ArrowShape'},
+    const {'1': 'shape2', '3': 2, '4': 1, '5': 14, '6': '.graphlib.dot.EdgeAttributes.ArrowShape'},
+    const {'1': 'shape3', '3': 3, '4': 1, '5': 14, '6': '.graphlib.dot.EdgeAttributes.ArrowShape'},
+    const {'1': 'shape4', '3': 4, '4': 1, '5': 14, '6': '.graphlib.dot.EdgeAttributes.ArrowShape'},
+  ],
+};
+
+const EdgeAttributes_Style$json = const {
+  '1': 'Style',
+  '2': const [
+    const {'1': 'SOLID', '2': 1},
+    const {'1': 'DASHED', '2': 2},
+    const {'1': 'DOTTED', '2': 3},
+    const {'1': 'BOLD', '2': 4},
+  ],
+};
+
+const EdgeAttributes_Dir$json = const {
+  '1': 'Dir',
+  '2': const [
+    const {'1': 'BOTH', '2': 1},
+    const {'1': 'FORWARD', '2': 2},
+    const {'1': 'BACK', '2': 3},
+  ],
+};
+
+const EdgeAttributes_ArrowShape$json = const {
+  '1': 'ArrowShape',
+  '2': const [
+    const {'1': 'BOX', '2': 1},
+    const {'1': 'CROW', '2': 2},
+    const {'1': 'CURVE', '2': 3},
+    const {'1': 'ICURVE', '2': 4},
+    const {'1': 'DIAMOND', '2': 5},
+    const {'1': 'DOT', '2': 6},
+    const {'1': 'INV', '2': 7},
+    const {'1': 'NONE', '2': 8},
+    const {'1': 'NORMAL', '2': 9},
+    const {'1': 'TEE', '2': 10},
+    const {'1': 'VEE', '2': 11},
+    const {'1': 'OBOX', '2': 12},
+    const {'1': 'ODIAMOND', '2': 13},
+    const {'1': 'ODOT', '2': 14},
+    const {'1': 'OINV', '2': 15},
+    const {'1': 'ONORMAL', '2': 16},
+  ],
+};
+
+const GraphAttributes$json = const {
+  '1': 'GraphAttributes',
+  '2': const [
+    const {'1': 'label', '3': 1, '4': 1, '5': 9},
+    const {'1': 'font_name', '3': 2, '4': 1, '5': 14, '6': '.graphlib.dot.Font'},
+    const {'1': 'font_size', '3': 3, '4': 1, '5': 13},
+    const {'1': 'bg_color', '3': 4, '4': 1, '5': 14, '6': '.graphlib.dot.Color'},
+    const {'1': 'color', '3': 5, '4': 1, '5': 14, '6': '.graphlib.dot.Color'},
+    const {'1': 'style', '3': 6, '4': 1, '5': 14, '6': '.graphlib.dot.GraphAttributes.Style'},
+    const {'1': 'rank_dir', '3': 7, '4': 1, '5': 14, '6': '.graphlib.dot.GraphAttributes.RankDir'},
+  ],
+  '4': const [GraphAttributes_Style$json, GraphAttributes_RankDir$json],
+};
+
+const GraphAttributes_Style$json = const {
+  '1': 'Style',
+  '2': const [
+    const {'1': 'SOLID', '2': 1},
+    const {'1': 'DASHED', '2': 2},
+    const {'1': 'DOTTED', '2': 3},
+    const {'1': 'BOLD', '2': 4},
+    const {'1': 'ROUNDED', '2': 5},
+    const {'1': 'FILLED', '2': 6},
+    const {'1': 'STRIPED', '2': 7},
+  ],
+};
+
+const GraphAttributes_RankDir$json = const {
+  '1': 'RankDir',
+  '2': const [
+    const {'1': 'TB', '2': 1},
+    const {'1': 'LR', '2': 2},
+  ],
+};
 
