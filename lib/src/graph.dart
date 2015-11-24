@@ -1,6 +1,9 @@
 library graphlib.graph;
 
 import 'dart:math' show PI, E;
+
+import 'package:quiver/core.dart' show hash3;
+
 const undefined = PI * E;
 
 const DEFAULT_EDGE_NAME = "\x00",
@@ -59,8 +62,10 @@ class Graph {
   // e -> label
   final Map _edgeLabels = {};
 
-  Graph({bool directed: true, bool multigraph: false, bool compound: false}) :
-    _isDirected = directed, _isMultigraph = multigraph, _isCompound = compound {
+  Graph({bool directed: true, bool multigraph: false, bool compound: false})
+      : _isDirected = directed,
+        _isMultigraph = multigraph,
+        _isCompound = compound {
     if (_isCompound) {
       // v -> parent
       _parent = {};
@@ -77,7 +82,6 @@ class Graph {
   /* Number of edges in the graph. Should only be changed by the implementation. */
   int _edgeCount = 0;
 
-
   /* === Graph functions ========= */
 
   bool get isDirected => _isDirected;
@@ -91,7 +95,6 @@ class Graph {
   }
 
   graph() => _label;
-
 
   /* === Node functions ========== */
 
@@ -119,13 +122,13 @@ class Graph {
     });
   }
 
-  setNodes(List vs, [value=undefined]) {
+  setNodes(List vs, [value = undefined]) {
     vs.forEach((v) {
       setNode(v, value);
     });
   }
 
-  setNode(v, [value=undefined]) {
+  setNode(v, [value = undefined]) {
     if (_nodes.containsKey(v)) {
       if (value != undefined) {
         _nodes[v] = value;
@@ -174,7 +177,7 @@ class Graph {
     }
   }
 
-  setParent(v, [parent=null]) {
+  setParent(v, [parent = null]) {
     if (!_isCompound) {
       throw new GraphException("Cannot set parent in a non-compound graph");
     }
@@ -182,9 +185,12 @@ class Graph {
     if (parent == null) {
       parent = GRAPH_NODE;
     } else {
-      for (var ancestor = parent; ancestor != null; ancestor = this.parent(ancestor)) {
+      for (var ancestor = parent;
+          ancestor != null;
+          ancestor = this.parent(ancestor)) {
         if (ancestor == v) {
-          throw new GraphException("Setting $parent as parent of $v would create create a cycle");
+          throw new GraphException(
+              "Setting $parent as parent of $v would create create a cycle");
         }
       }
 
@@ -257,7 +263,7 @@ class Graph {
 
   Iterable<Edge> get edges => _edgeObjs.values;
 
-  setPath(List vs, [value=undefined]) {
+  setPath(List vs, [value = undefined]) {
     vs.reduce((v, w) {
       if (value != undefined) {
         setEdge(v, w, value);
@@ -268,11 +274,12 @@ class Graph {
     });
   }
 
-  setEdgeObj(Edge edge, [value=undefined]) => setEdge(edge.v, edge.w, value, edge.name);
+  setEdgeObj(Edge edge, [value = undefined]) =>
+      setEdge(edge.v, edge.w, value, edge.name);
 
-  setEdge(v, w, [value=undefined, name=null]) {
-  //setEdge({ v, w, [name] }, [value])
-  //setEdge() {
+  setEdge(v, w, [value = undefined, name = null]) {
+    //setEdge({ v, w, [name] }, [value])
+    //setEdge() {
     var /*v, w, name, value,*/
         valueSpecified = value != undefined;
 
@@ -291,7 +298,8 @@ class Graph {
     }
 
     if (name != null && !_isMultigraph) {
-      throw new GraphException("Cannot set a named edge when isMultigraph = false");
+      throw new GraphException(
+          "Cannot set a named edge when isMultigraph = false");
     }
 
     // It didn't exist, so we need to create it.
@@ -319,7 +327,7 @@ class Graph {
     return _edgeLabels[edgeObjToId(_isDirected, edge)];
   }
 
-  edge(v, w, [name=null]) {
+  edge(v, w, [name = null]) {
     return _edgeLabels[edgeArgsToId(_isDirected, v, w, name)];
   }
 
@@ -327,7 +335,7 @@ class Graph {
     return _edgeLabels.containsKey(edgeObjToId(_isDirected, edge));
   }
 
-  bool hasEdge(v, w, [name=null]) {
+  bool hasEdge(v, w, [name = null]) {
     return _edgeLabels.containsKey(edgeArgsToId(_isDirected, v, w, name));
   }
 
@@ -335,7 +343,7 @@ class Graph {
     _removeEdge(edgeObjToId(_isDirected, edge));
   }
 
-  removeEdge(v, w, [name=null]) {
+  removeEdge(v, w, [name = null]) {
     _removeEdge(edgeArgsToId(_isDirected, v, w, name));
   }
 
@@ -354,7 +362,7 @@ class Graph {
     }
   }
 
-  Iterable<Edge> inEdges(v, [u=null]) {
+  Iterable<Edge> inEdges(v, [u = null]) {
     if (_in.containsKey(v)) {
       Map<dynamic, Edge> inV = _in[v];
       Iterable<Edge> edges = inV.values;
@@ -366,7 +374,7 @@ class Graph {
     return null;
   }
 
-  Iterable<Edge> outEdges(v, [w=null]) {
+  Iterable<Edge> outEdges(v, [w = null]) {
     if (_out.containsKey(v)) {
       Map<dynamic, Edge> outV = _out[v];
       List<Edge> edges = outV.values.toList();
@@ -378,7 +386,7 @@ class Graph {
     return null;
   }
 
-  Iterable<Edge> nodeEdges(v, [w=null]) {
+  Iterable<Edge> nodeEdges(v, [w = null]) {
     var inEdges = this.inEdges(v, w);
     if (inEdges != null) {
       return inEdges.toList()..addAll(outEdges(v, w));
@@ -396,27 +404,32 @@ incrementOrInitEntry(Map map, k) {
 }
 
 decrementOrRemoveEntry(Map map, k) {
-  if (--map[k] == 0) { map.remove(k); }
+  if (--map[k] == 0) {
+    map.remove(k);
+  }
 }
 
-edgeArgsToId(bool isDirected, v, w, [name=null]) {
+edgeArgsToId(bool isDirected, v, w, [name = null]) {
   if (!isDirected && v.compareTo(w) > 0) {
     var tmp = v;
     v = w;
     w = tmp;
   }
-  return v.toString() + EDGE_KEY_DELIM + w.toString() + EDGE_KEY_DELIM +
-             (name == null ? DEFAULT_EDGE_NAME : name.toString());
+  return v.toString() +
+      EDGE_KEY_DELIM +
+      w.toString() +
+      EDGE_KEY_DELIM +
+      (name == null ? DEFAULT_EDGE_NAME : name.toString());
 }
 
-Edge edgeArgsToObj(bool isDirected, v, w, [name=null]) {
+Edge edgeArgsToObj(bool isDirected, v, w, [name = null]) {
   if (!isDirected && v.compareTo(w) > 0) {
     var tmp = v;
     v = w;
     w = tmp;
   }
   //var edgeObj =  { v: v, w: w };
-  var edgeObj =  new Edge(v, w, name);
+  var edgeObj = new Edge(v, w, name);
   /*if (name != undefined) {
     edgeObj.name = name;
   }*/
@@ -448,6 +461,7 @@ class Edge {
     }
     return true;
   }
+  int get hashCode => hash3(v.hashCode, w.hashCode, name.hashCode);
 }
 
 class GraphException implements Exception {
