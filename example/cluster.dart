@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:graphviz/graphviz.dart';
+//import 'package:graphviz/graphviz.dart';
 import 'package:graphlib/graphlib.dart';
 
 main() {

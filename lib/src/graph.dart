@@ -1,448 +1,253 @@
-library graphlib.graph;
+library graphlib.src.graph;
 
+import 'dart:js';
 import 'dart:math' show PI, E;
 
 import 'package:quiver/core.dart' show hash3;
 
-const undefined = PI * E;
+const _undefined = PI * E;
 
-const DEFAULT_EDGE_NAME = "\x00",
-    GRAPH_NODE = "\x00",
-    EDGE_KEY_DELIM = "\x01";
-
-typedef nodeLabelFn(v);
-typedef edgeLabelFn(v, w, name);
-
-// Implementation notes:
-//
-//  * Node id query functions should return string ids for the nodes
-//  * Edge id query functions should return an "edgeObj", edge object, that is
-//    composed of enough information to uniquely identify an edge: {v, w, name}.
-//  * Internally we use an "edgeId", a stringified form of the edgeObj, to
-//    reference edges. This is because we need a performant way to look these
-//    edges up and, object properties, which have string keys, are the closest
-//    we're going to get to a performant hashtable in JavaScript.
-
+/// Directed or undirected multi-graph.
 class Graph {
-  final bool _isDirected, _isMultigraph, _isCompound;
+  final JsObject _graph;
 
-  // Label for the graph itself
-  var _label;
+  JsObject get g => _graph;
 
-  // Defaults to be set when creating a new node
-  nodeLabelFn _defaultNodeLabelFn = (v) => null;
+  Graph._(this._graph);
 
-  // Defaults to be set when creating a new edge
-  edgeLabelFn _defaultEdgeLabelFn = (v, w, name) => null;
+  /// A [directed] (default: true) graph treats the order of nodes in an edge
+  /// as significant. A [multigraph] (default:false) may have multiple edges
+  /// between the same pair of nodes. A [compound] (default: false) graph may
+  /// have nodes which can be the parent of other nodes.
+  factory Graph({bool directed, bool compound, bool multigraph}) {
+    var opts = {};
+    if (directed != null) opts['directed'] = directed;
+    if (compound != null) opts['compound'] = compound;
+    if (multigraph != null) opts['multigraph'] = multigraph;
+    var _opts = new JsObject.jsify(opts);
+    var graph = new JsObject(context['graphlib']['Graph'], [_opts]);
+    return new Graph._(graph);
+  }
 
-  // v -> label
-  final Map _nodes = {};
+  /// Construct a [Graph] from a JSON string.
+  factory Graph.read(String json) {
+    var obj = context['JSON'].callMethod('parse', [json]);
+    var g = context['graphlib']['json'].callMethod('read', [obj]);
+    return new Graph._(g);
+  }
 
-  // v -> parent
-  Map _parent;
+  /// A directed graph treats the order of nodes in an edge as significant
+  /// whereas an undirected graph does not.
+  bool isDirected() => _graph.callMethod('isDirected');
 
-  // v -> children
-  Map _children;
+  bool isMultigraph() => _graph.callMethod('isMultigraph');
 
-  // v -> edgeObj
-  final Map<dynamic, Map<dynamic, Edge>> _in = {};
+  bool isCompound() => _graph.callMethod('isCompound');
 
-  // u -> v -> Number
-  final Map _preds = {};
+  /// The currently assigned label for the graph.
+  graph() => _graph.callMethod('graph');
 
-  // v -> edgeObj
-  final Map<dynamic, Map<dynamic, Edge>> _out = {};
+  /// Sets the label for the graph to [label].
+  setGraph(label) => _graph.callMethod('setGraph', [label]);
 
-  // v -> w -> Number
-  final Map _sucs = {};
+  int nodeCount() => _graph.callMethod('nodeCount');
 
-  // e -> edgeObj
-  final Map _edgeObjs = {};
+  int edgeCount() => _graph.callMethod('edgeCount');
 
-  // e -> label
-  final Map _edgeLabels = {};
-
-  Graph({bool directed: true, bool multigraph: false, bool compound: false})
-      : _isDirected = directed,
-        _isMultigraph = multigraph,
-        _isCompound = compound {
-    if (_isCompound) {
-      // v -> parent
-      _parent = {};
-
-      // v -> children
-      _children = {};
-      _children[GRAPH_NODE] = {};
+  /// Sets a new default value that is assigned to nodes that are created
+  /// without a label. If [val] is not a function it is assigned as the label
+  /// directly. If [val] is a function, it is called with the id of the node
+  /// being created.
+  setDefaultNodeLabel(val) {
+    if (val is Map) {
+      val = new JsObject.jsify(val);
     }
+    _graph.callMethod('setDefaultNodeLabel', [val]);
   }
 
-  /* Number of nodes in the graph. Should only be changed by the implementation. */
-  int _nodeCount = 0;
-
-  /* Number of edges in the graph. Should only be changed by the implementation. */
-  int _edgeCount = 0;
-
-  /* === Graph functions ========= */
-
-  bool get isDirected => _isDirected;
-
-  bool get isMultigraph => _isMultigraph;
-
-  bool get isCompound => _isCompound;
-
-  setGraph(label) {
-    _label = label;
+  /// Sets a new default value that is assigned to edges that are created
+  /// without a label. If [val] is not a function it is assigned as the label
+  /// directly. If [val] is a function, it is called with the parameters
+  /// `(v, w, name)`.
+  setDefaultEdgeLabel(val) {
+    if (val is Map) {
+      val = new JsObject.jsify(val);
+    }
+    _graph.callMethod('setDefaultEdgeLabel', [val]);
   }
 
-  graph() => _label;
+  /// Returns the ids of the nodes in the graph. Use [node] to get the label
+  /// for each node. Takes `O(|V|)` time.
+  nodes() => _graph.callMethod('nodes');
 
-  /* === Node functions ========== */
-
-  setDefaultNodeLabel(newDefault) {
-    defaultNodeLabelFn = (v) => newDefault;
-  }
-
-  void set defaultNodeLabelFn(nodeLabelFn newDefault) {
-    _defaultNodeLabelFn = newDefault;
-  }
-
-  int get nodeCount => _nodeCount;
-
-  Iterable get nodes => _nodes.keys;
-
-  Iterable get sources {
-    return nodes.where((v) {
-      return _in[v].isEmpty;
+  /// Returns the `edgeObj` for each edge in the graph. Use [edge] to get the
+  /// label for each edge. Takes `O(|E|)` time.
+  Iterable<Edge> edges() {
+    var ret = _graph.callMethod('edges');
+    return ret.map((JsObject e) {
+      return new Edge._(e['v'], e['w'], e['name']);
     });
   }
 
-  Iterable get sinks {
-    return nodes.where((v) {
-      return _out[v].isEmpty;
+  /// Returns those nodes in the graph that have no in-edges. Takes `O(|V|)`
+  /// time.
+  sources() => _graph.callMethod('sources');
+
+  /// Returns those nodes in the graph that have no out-edges. Takes `O(|V|)`
+  /// time.
+  sinks() => _graph.callMethod('sinks');
+
+  /// Returns true if the graph has a node with the id [v]. Takes `O(1)` time.
+  hasNode(v) {
+    if (v is Map) {
+      v = new JsObject.jsify(v);
+    }
+    return _graph.callMethod('hasNode', [v]);
+  }
+
+  /// Returns the label assigned to the node with the id [v] if it is in the
+  /// graph. Otherwise returns `undefined`. Takes O(1) time.
+  node(v) {
+    if (v is Map) {
+      v = new JsObject.jsify(v);
+    }
+    return _graph.callMethod('node', [v]);
+  }
+
+  /// Creates or updates the value for the node [v] in the graph.
+  setNode(v, [value = _undefined]) {
+    var args = [v];
+    if (value != _undefined) {
+      if (value is Map) {
+        value = new JsObject.jsify(value);
+      }
+      args.add(value);
+    }
+    return _graph.callMethod('setNode', args);
+  }
+
+  /// Remove the node with the id [v] in the graph or do nothing if the node
+  /// is not in the graph. If the node was removed this function also removes
+  /// any incident edges. Takes `O(|E|)` time.
+  removeNode(v) => _graph.callMethod('removeNode', [v]);
+
+  /// Return all nodes that are predecessors of the specified node or
+  /// `null` if node [v] is not in the graph.
+  predecessors(v) => _graph.callMethod('predecessors', [v]);
+
+  /// Return all nodes that are successors of the specified node or `null`
+  /// if node [v] is not in the graph.
+  successors(v) => _graph.callMethod('successors', [v]);
+
+  /// Return all nodes that are predecessors or successors of the specified
+  /// node or `null` if node [v] is not in the graph. Takes O(|V|) time.
+  neighbors(v) => _graph.callMethod('neighbors', [v]);
+
+  /// Return all edges that point to the node [v]. Optionally filters those
+  /// edges down to just those coming from node [u].
+  Iterable<Edge> inEdges(v, [u]) {
+    var args = [v];
+    if (u != null) {
+      args.add(u);
+    }
+    var ret = _graph.callMethod('inEdges', args);
+    return ret.map((JsObject e) {
+      return new Edge._(e['v'], e['w'], e['name']);
     });
   }
 
-  setNodes(List vs, [value = undefined]) {
-    vs.forEach((v) {
-      setNode(v, value);
+  /// Return all edges that are pointed at by node [v]. Optionally filters
+  /// those edges down to just those point to [w].
+  Iterable<Edge> outEdges(v, [w]) {
+    var args = [v];
+    if (w != null) {
+      args.add(w);
+    }
+    var ret = _graph.callMethod('outEdges', args);
+    return ret.map((JsObject e) {
+      return new Edge._(e['v'], e['w'], e['name']);
     });
   }
 
-  setNode(v, [value = undefined]) {
-    if (_nodes.containsKey(v)) {
-      if (value != undefined) {
-        _nodes[v] = value;
-      }
-      return;
-    }
-
-    _nodes[v] = value != undefined ? value : _defaultNodeLabelFn(v);
-    if (_isCompound) {
-      _parent[v] = GRAPH_NODE;
-      _children[v] = {};
-      _children[GRAPH_NODE][v] = true;
-    }
-    _in[v] = {};
-    _preds[v] = {};
-    _out[v] = {};
-    _sucs[v] = {};
-    ++_nodeCount;
-  }
-
-  node(v) => _nodes[v];
-
-  hasNode(v) => _nodes.containsKey(v);
-
-  removeNode(v) {
-    if (_nodes.containsKey(v)) {
-      var removeEdge = (e) {
-        this.removeEdgeObj(_edgeObjs[e]);
-      };
-      _nodes.remove(v);
-      if (_isCompound) {
-        _removeFromParentsChildList(v);
-        _parent.remove(v);
-        children(v).toList().forEach((child) {
-          setParent(child);
-        });
-        _children.remove(v);
-      }
-      _in[v].keys.toList().forEach(removeEdge);
-      _in.remove(v);
-      _preds.remove(v);
-      _out[v].keys.toList().forEach(removeEdge);
-      _out.remove(v);
-      _sucs.remove(v);
-      --_nodeCount;
-    }
-  }
-
-  setParent(v, [parent = null]) {
-    if (!_isCompound) {
-      throw new GraphException("Cannot set parent in a non-compound graph");
-    }
-
-    if (parent == null) {
-      parent = GRAPH_NODE;
-    } else {
-      for (var ancestor = parent;
-          ancestor != null;
-          ancestor = this.parent(ancestor)) {
-        if (ancestor == v) {
-          throw new GraphException(
-              "Setting $parent as parent of $v would create create a cycle");
-        }
-      }
-
-      setNode(parent);
-    }
-
-    setNode(v);
-    _removeFromParentsChildList(v);
-    _parent[v] = parent;
-    _children[parent][v] = true;
-  }
-
-  _removeFromParentsChildList(v) => _children[this._parent[v]].remove(v);
-
-  parent(v) {
-    if (_isCompound) {
-      var parent = _parent[v];
-      if (parent != GRAPH_NODE) {
-        return parent;
-      }
-    }
-  }
-
-  Iterable children([vv = null]) {
-    var v = vv == null ? GRAPH_NODE : vv;
-    if (_isCompound) {
-      if (_children.containsKey(v)) {
-        return _children[v].keys;
-      }
-    } else if (vv == null) {
-      return nodes;
-    } else if (hasNode(v)) {
-      return [];
-    }
-    return null;
-  }
-
-  Iterable predecessors(v) {
-    if (_preds.containsKey(v)) {
-      return _preds[v].keys;
-    }
-    return null;
-  }
-
-  Iterable successors(v) {
-    if (_sucs.containsKey(v)) {
-      return _sucs[v].keys;
-    }
-    return null;
-  }
-
-  neighbors(v) {
-    var preds = predecessors(v);
-    if (preds != null) {
-      return union([preds, successors(v)]);
-    }
-  }
-
-  /* === Edge functions ========== */
-
-  setDefaultEdgeLabel(newDefault) {
-    defaultEdgeLabelFn = (v, w, name) => newDefault;
-  }
-
-  void set defaultEdgeLabelFn(edgeLabelFn newDefault) {
-    _defaultEdgeLabelFn = newDefault;
-  }
-
-  int get edgeCount => _edgeCount;
-
-  Iterable<Edge> get edges => _edgeObjs.values;
-
-  setPath(List vs, [value = undefined]) {
-    vs.reduce((v, w) {
-      if (value != undefined) {
-        setEdge(v, w, value);
-      } else {
-        setEdge(v, w);
-      }
-      return w;
-    });
-  }
-
-  setEdgeObj(Edge edge, [value = undefined]) =>
-      setEdge(edge.v, edge.w, value, edge.name);
-
-  setEdge(v, w, [value = undefined, name = null]) {
-    //setEdge({ v, w, [name] }, [value])
-    //setEdge() {
-    var /*v, w, name, value,*/
-        valueSpecified = value != undefined;
-
-    v = v.toString();
-    w = w.toString();
-    if (name != null) {
-      name = name.toString();
-    }
-
-    var e = edgeArgsToId(_isDirected, v, w, name);
-    if (_edgeLabels.containsKey(e)) {
-      if (valueSpecified) {
-        _edgeLabels[e] = value;
-      }
-      return;
-    }
-
-    if (name != null && !_isMultigraph) {
-      throw new GraphException(
-          "Cannot set a named edge when isMultigraph = false");
-    }
-
-    // It didn't exist, so we need to create it.
-    // First ensure the nodes exist.
-    setNode(v);
-    setNode(w);
-
-    _edgeLabels[e] = valueSpecified ? value : _defaultEdgeLabelFn(v, w, name);
-
-    var edgeObj = edgeArgsToObj(_isDirected, v, w, name);
-    // Ensure we add undirected edges in a consistent way.
-    v = edgeObj.v;
-    w = edgeObj.w;
-
-    //Object.freeze(edgeObj);
-    _edgeObjs[e] = edgeObj;
-    incrementOrInitEntry(_preds[w], v);
-    incrementOrInitEntry(_sucs[v], w);
-    _in[w][e] = edgeObj;
-    _out[v][e] = edgeObj;
-    _edgeCount++;
-  }
-
-  edgeObj(Edge edge) {
-    return _edgeLabels[edgeObjToId(_isDirected, edge)];
-  }
-
-  edge(v, w, [name = null]) {
-    return _edgeLabels[edgeArgsToId(_isDirected, v, w, name)];
-  }
-
-  bool hasEdgeObj(Edge edge) {
-    return _edgeLabels.containsKey(edgeObjToId(_isDirected, edge));
-  }
-
-  bool hasEdge(v, w, [name = null]) {
-    return _edgeLabels.containsKey(edgeArgsToId(_isDirected, v, w, name));
-  }
-
-  removeEdgeObj(Edge edge) {
-    _removeEdge(edgeObjToId(_isDirected, edge));
-  }
-
-  removeEdge(v, w, [name = null]) {
-    _removeEdge(edgeArgsToId(_isDirected, v, w, name));
-  }
-
-  _removeEdge(e) {
-    if (_edgeObjs.containsKey(e)) {
-      var edge = _edgeObjs[e];
-      var v = edge.v;
-      var w = edge.w;
-      _edgeLabels.remove(e);
-      _edgeObjs.remove(e);
-      decrementOrRemoveEntry(_preds[w], v);
-      decrementOrRemoveEntry(_sucs[v], w);
-      _in[w].remove(e);
-      _out[v].remove(e);
-      _edgeCount--;
-    }
-  }
-
-  Iterable<Edge> inEdges(v, [u = null]) {
-    if (_in.containsKey(v)) {
-      Map<dynamic, Edge> inV = _in[v];
-      Iterable<Edge> edges = inV.values;
-      if (u == null) {
-        return edges.toList();
-      }
-      return edges.where((edge) => edge.v == u).toList();
-    }
-    return null;
-  }
-
-  Iterable<Edge> outEdges(v, [w = null]) {
-    if (_out.containsKey(v)) {
-      Map<dynamic, Edge> outV = _out[v];
-      List<Edge> edges = outV.values.toList();
-      if (w == null) {
-        return new List<Edge>.from(edges);
-      }
-      return edges.where((Edge edge) => edge.w == w).toList();
-    }
-    return null;
-  }
-
+  /// Returns all edges to or from node [v] regardless of direction.
+  /// Optionally filters those edges down to just those between nodes
+  /// [v] and [w] regardless of direction.
   Iterable<Edge> nodeEdges(v, [w = null]) {
-    var inEdges = this.inEdges(v, w);
-    if (inEdges != null) {
-      return inEdges.toList()..addAll(outEdges(v, w));
+    var args = [v];
+    if (w != null) {
+      args.add(w);
     }
-    return null;
+    var ret = _graph.callMethod('nodeEdges', args);
+    return ret.map((JsObject e) {
+      return new Edge._(e['v'], e['w'], e['name']);
+    });
   }
-}
 
-incrementOrInitEntry(Map map, k) {
-  if (map.containsKey(k)) {
-    map[k]++;
-  } else {
-    map[k] = 1;
+  /// Returns the node that is a parent of node [v] or `null` if
+  /// node `v` does not have a parent or is not a member of the graph.
+  parent(v) => _graph.callMethod('parent', [v]);
+
+  /// Returns all nodes that are children of node v or `null` if node
+  /// [v] is not in the graph.
+  children(v) => _graph.callMethod('children', [v]);
+
+  /// Sets the parent for [v] to [parent] if it is defined or removes the
+  /// parent for [v] if parent is `undefined`.
+  setParent(v, parent) => _graph.callMethod('setParent', [v, parent]);
+
+  /// Returns true if the graph has an edge between [v] and [w] with the
+  /// optional [name].
+  hasEdge(v, w, [name]) {
+    var args = [v, w];
+    if (name != null) {
+      args.add(name);
+    }
+    return _graph.callMethod('hasEdge', args);
   }
-}
 
-decrementOrRemoveEntry(Map map, k) {
-  if (--map[k] == 0) {
-    map.remove(k);
+  /// Returns the label for the edge ([v], [w]) if the graph has an edge
+  /// between [v] and [w] with the optional [name].
+  edge(v, w, [name]) {
+    var args = [v, w];
+    if (name != null) {
+      args.add(name);
+    }
+    return _graph.callMethod('edge', args);
   }
-}
 
-edgeArgsToId(bool isDirected, v, w, [name = null]) {
-  if (!isDirected && v.compareTo(w) > 0) {
-    var tmp = v;
-    v = w;
-    w = tmp;
+  /// Creates or updates the label for the edge ([v], [w]) with the optionally
+  /// supplied [name].
+  setEdge(v, w, [value = _undefined, name = null]) {
+    var args = [v, w];
+
+    if (value != _undefined) {
+      if (value is Map) {
+        value = new JsObject.jsify(value);
+      }
+      args.add(value);
+      if (name != null) {
+        args.add(name);
+      }
+    }
+    return _graph.callMethod('setEdge', args);
   }
-  return v.toString() +
-      EDGE_KEY_DELIM +
-      w.toString() +
-      EDGE_KEY_DELIM +
-      (name == null ? DEFAULT_EDGE_NAME : name.toString());
-}
 
-Edge edgeArgsToObj(bool isDirected, v, w, [name = null]) {
-  if (!isDirected && v.compareTo(w) > 0) {
-    var tmp = v;
-    v = w;
-    w = tmp;
+  /// Removes the edge ([v], [w]) if the graph has an edge between [v] and [w]
+  /// with the optional [name].
+  removeEdge(v, w) => _graph.callMethod('removeEdge', [v, w]);
+
+  /// Create a JSON representation of the graph.
+  String toJsonString() {
+    var json = context['graphlib']['json'].callMethod('write', [_graph]);
+    return context['JSON'].callMethod('stringify', [json]);
   }
-  //var edgeObj =  { v: v, w: w };
-  var edgeObj = new Edge(v, w, name);
-  /*if (name != undefined) {
-    edgeObj.name = name;
-  }*/
-  return edgeObj;
-}
-
-edgeObjToId(bool isDirected, Edge edgeObj) {
-  return edgeArgsToId(isDirected, edgeObj.v, edgeObj.w, edgeObj.name);
 }
 
 class Edge {
-  final dynamic v, w, name;
-  Edge(this.v, this.w, [this.name]);
+  final v, w, name;
+
+  Edge._(this.v, this.w, [this.name]);
+
   bool operator ==(other) {
     if (other == null) {
       return false;
@@ -461,19 +266,8 @@ class Edge {
     }
     return true;
   }
+
   int get hashCode => hash3(v.hashCode, w.hashCode, name.hashCode);
-}
 
-class GraphException implements Exception {
-  final String message;
-  GraphException(this.message);
-  String toString() => message;
-}
-
-Iterable union(Iterable<Iterable> sets) {
-  var s = new Set();
-  for (var ss in sets) {
-    s = s.union(ss.toSet());
-  }
-  return s;
+  String toString() => 'Edge(v: $v, w: $w, name: $name)';
 }
